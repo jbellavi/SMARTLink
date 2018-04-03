@@ -5,13 +5,13 @@
 @color-search-placeholder: #878787;
 
 @height-action: 40px;
-@offset-action: 16px;
+@offset-action: (@height-header - 16px);
 
 #action-bar {
     position: absolute;
     display: flex;
     flex-direction: row;
-    top: (@height-header - @offset-action);
+    top: @offset-action;
     left: 10%;
     width: 80%;
     height: @height-action;
@@ -25,9 +25,10 @@
     flex-grow: 0;
     flex-shrink: 0;
     height: 100%;
-    background-color: @color-action-fg;
     padding: 0px 20px;
     color: white;
+    background-color: transparent;
+    z-index: 2;
 }
 
 .action-center {
@@ -57,4 +58,25 @@
 
 #search::placeholder {
     color: @color-search-placeholder;
+    text-overflow: ellipsis;
+}
+
+.trapezoid {
+    position: absolute;
+    top: 0;
+    height: @height-action;
+    width: 145px;
+    min-width: 145px;
+}
+
+.trapezoid.left {
+    left: 0;
+    border-top: @height-action solid @color-action-fg;
+    border-right: 15px solid transparent;
+}
+
+.trapezoid.right {
+    right: 0;
+    border-bottom: @height-action solid @color-action-fg;
+    border-left: 15px solid transparent;
 }
