@@ -11,6 +11,8 @@
 @font-body: 'Helvetica', sans-serif;
 @font-size-logo: 24px;
 
+// other files may change this if they plan to overlap with the header
+@offset-header: 0px;
 @height-header: 83px;
 @height-footer: @height-header;
 
@@ -28,7 +30,7 @@ body {
     background-color: @color-header-bg;
     color: @color-header-text;
     height: @height-header;
-    padding: 0px 50px 25px 90px;
+    padding: 0px 50px @offset-header 90px;
 }
 
 .header-section() {

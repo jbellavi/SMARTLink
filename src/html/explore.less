@@ -5,7 +5,8 @@
 @color-search-placeholder: #878787;
 
 @height-action: 40px;
-@offset-action: (@height-header - 16px);
+@offset-header: 16px;
+@offset-action: (@height-header - @offset-header);
 
 #action-bar {
     position: absolute;
