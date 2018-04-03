@@ -14,9 +14,10 @@ var uglify          = require('gulp-uglify');
 var autoprefix = new LessAutoprefix({browsers: ['defaults']});
 
 // directories
-var SRC = './src/html';
-var TMP = './tmp'; // Intermediate build files.
-var BUILD = './com/html';
+var HTML_ROOT = "/html";
+var SRC = './src' + HTML_ROOT;
+var TMP = './tmp' + HTML_ROOT; // Intermediate build files.
+var BUILD = './com' + HTML_ROOT;
 
 /* Helper functions: */
 
@@ -73,6 +74,7 @@ let compileHtml = (dir, file, css, js) => {
                 .on('end', cb);
 
         } else {
+            // recursive case
             cb = () => { compileHtml(dir, file, css, js.slice(1)); }
 
             compileJs(js[0][0], js[0][1], cb);
@@ -156,10 +158,10 @@ gulp.task('clean:tmp', function() {
     del([TMP]);
 });
 
-// Copies raw html files to the 
-gulp.task('html', ['html:copy'], function() {
+// Compiles the html pages and their css/js assets.
+gulp.task('html:compile', ['html:copy'], function() {
     const FILES = [
-        ['explore', [], []],
+        ['explore', [['', 'explore']], []],
     ];
 
     for (let file of FILES) {
@@ -168,6 +170,9 @@ gulp.task('html', ['html:copy'], function() {
 
     return true;
 });
+
+// Copies raw html files to the 
+gulp.task('html', sequence('html:copy', 'html:compile'));
 
 // Copies all files in the asset directory to the target
 // directory.
