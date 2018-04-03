@@ -2,13 +2,18 @@
 
 @color-body-text: #000;
 @color-accent: #04bf00;
+
 @color-header-bg: #f0f0f0;
 @color-header-text: @color-body-text;
+@color-action-bg: #454545;
+@color-search-placeholder: #878787;
 
 @font-body: 'Helvetica', sans-serif;
 @font-size-logo: 24px;
 
 @height-header: 90px;
+@height-action: 40px;
+@offset-action: 16px;
 
 body {
     display: flex;
@@ -69,3 +74,53 @@ body {
     padding: 0px 0px 0px 11px;
 }
 
+#action-bar {
+    position: absolute;
+    display: flex;
+    flex-direction: row;
+    top: (@height-header - @offset-action);
+    left: 10%;
+    width: 80%;
+    height: @height-action;
+    background-color: @color-action-bg;
+}
+
+.action-section() {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-grow: 0;
+    flex-shrink: 0;
+    height: 100%;
+    background-color: @color-accent;
+    padding: 0px 20px;
+}
+
+.action-center {
+    .action-section();
+    flex-grow: 1;
+    background-color: transparent;
+    padding: 0px;
+}
+
+.action-left {
+    .action-section();
+}
+
+.action-right {
+    .action-section();
+}
+
+#search {
+    width: 100%;
+    height: 100%;
+    background-color: transparent;
+    font-size: 19px;
+    color: white;
+    border: none;
+    padding: 0px 50px;
+}
+
+#search::placeholder {
+    color: @color-search-placeholder;
+}
