@@ -5,11 +5,14 @@
 
 @color-header-bg: #f0f0f0;
 @color-header-text: @color-body-text;
+@color-footer-bg: #00082c;
+@color-footer-text: white;
 
 @font-body: 'Helvetica', sans-serif;
 @font-size-logo: 24px;
 
-@height-header: 90px;
+@height-header: 83px;
+@height-footer: @height-header;
 
 body {
     display: flex;
@@ -32,7 +35,6 @@ body {
     display: flex;
     flex-direction: row;
     align-items: center;
-
 }
 
 .header-left {
@@ -48,6 +50,10 @@ body {
     flex-direction: row;
     font-size: @font-size-logo;
     font-style: italic;
+}
+
+.footer.logo {
+    color: white;
 }
 
 .logo-smart {
@@ -68,4 +74,36 @@ body {
 
 #login-tab {
     padding: 0px 0px 0px 11px;
+}
+
+#page-footer {
+    height: @height-footer;
+    position: absolute;
+    bottom: 0px;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    background-color: @color-footer-bg;
+    color: @color-footer-text;
+    width: 100%;
+    padding: 0px 80px; 
+}
+
+.footer-section() {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+
+.footer-left {
+    .footer-section();
+}
+
+.footer-right {
+    .footer-section();
+}
+
+.footer-separator {
+    padding: 0px 10px;
 }
