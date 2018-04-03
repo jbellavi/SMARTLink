@@ -1,5 +1,12 @@
 @import "main";
 
+@color-action-bg: #454545;
+@color-action-fg: @color-accent;
+@color-search-placeholder: #878787;
+
+@height-action: 40px;
+@offset-action: 16px;
+
 #action-bar {
     position: absolute;
     display: flex;
@@ -18,8 +25,9 @@
     flex-grow: 0;
     flex-shrink: 0;
     height: 100%;
-    background-color: @color-accent;
+    background-color: @color-action-fg;
     padding: 0px 20px;
+    color: white;
 }
 
 .action-center {
