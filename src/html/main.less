@@ -1,1 +1,71 @@
 @import "reset";
+
+@color-body-text: #000;
+@color-accent: #04bf00;
+@color-header-bg: #f0f0f0;
+@color-header-text: @color-body-text;
+
+@font-body: 'Helvetica', sans-serif;
+@font-size-logo: 24px;
+
+@height-header: 90px;
+
+body {
+    display: flex;
+    flex-direction: column;
+    font-family: @font-body;
+}
+
+#page-header {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    background-color: @color-header-bg;
+    color: @color-header-text;
+    height: @height-header;
+    padding: 0px 50px 25px 90px;
+}
+
+.header-section() {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+
+}
+
+.header-left {
+    .header-section();
+}
+
+.header-right {
+    .header-section();
+}
+
+.logo {
+    display: flex;
+    flex-direction: row;
+    font-size: @font-size-logo;
+    font-style: italic;
+}
+
+.logo-smart {
+    font-weight: bold;
+    text-transform: uppercase;
+}
+
+.header-tab {
+    font-style: italic;
+    text-transform: uppercase;
+    padding: 0px 33px;
+}
+
+.selected.header-tab {
+    font-weight: bold;
+    color: @color-accent;
+}
+
+#login-tab {
+    padding: 0px 0px 0px 11px;
+}
+
