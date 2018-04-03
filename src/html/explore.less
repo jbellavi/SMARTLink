@@ -13,8 +13,8 @@
     display: flex;
     flex-direction: row;
     top: @offset-action;
-    left: 10%;
-    width: 80%;
+    left: @margin-content;
+    width: @width-content;
     height: @height-action;
     background-color: @color-action-bg;
 }
@@ -80,4 +80,18 @@
     right: 0;
     border-bottom: @height-action solid @color-action-fg;
     border-left: 15px solid transparent;
+}
+
+article {
+    height: 220px;
+    width: 370px;
+    padding: 18px 20px;
+    color: white;
+    background: url("./asset/test.jpg") center;
+    background-size: cover;
+}
+
+.article-dateline {
+    display: block;
+    padding-top: 12px;
 }

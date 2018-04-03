@@ -15,6 +15,8 @@
 @offset-header: 0px;
 @height-header: 83px;
 @height-footer: @height-header;
+@width-content: 80%;
+@margin-content: ((100% - @width-content) / 2);
 
 body {
     display: flex;
@@ -108,4 +110,10 @@ body {
 
 .footer-separator {
     padding: 0px 10px;
+}
+
+#main-content {
+    width: @width-content;
+    margin-left: @margin-content;
+    padding-top: (20px + @height-action - @offset-header);
 }
