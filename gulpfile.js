@@ -19,6 +19,14 @@ var SRC = './src' + HTML_ROOT;
 var TMP = './tmp' + HTML_ROOT; // Intermediate build files.
 var BUILD = './com' + HTML_ROOT;
 
+const PAGES = [
+    {
+        html: 'explore',
+        css: ['explore'],
+        js: [],
+    }
+]
+
 /* Helper functions: */
 
 /**
@@ -30,8 +38,8 @@ var BUILD = './com' + HTML_ROOT;
  * @param cb    the callback to execute when the css finishes
  *              compiling
  */
-let compileCss = (dir, file, cb) => {
-    gulp.src(SRC + '/' + dir + '/' + file + '.less')
+let compileCss = (file, cb) => {
+    gulp.src(SRC + '/' + file + '.less')
         .pipe(less({
             plugins: [autoprefix],
         }))
@@ -41,7 +49,7 @@ let compileCss = (dir, file, cb) => {
         .pipe(cleanCSS({
             compatibility: '*',
         }))
-        .pipe(gulp.dest(TMP + '/' + dir))
+        .pipe(gulp.dest(TMP))
         .on('end', cb);
 };
 
@@ -77,13 +85,13 @@ let compileHtml = (dir, file, css, js) => {
             // recursive case
             cb = () => { compileHtml(dir, file, css, js.slice(1)); }
 
-            compileJs(js[0][0], js[0][1], cb);
+            compileJs(js[0], cb);
         }
     } else {
         // recursive case
         cb = () => { compileHtml(dir, file, css.slice(1), js); }
 
-        compileCss(css[0][0], css[0][1], cb);
+        compileCss(css[0], cb);
     }
 };
 
@@ -96,13 +104,13 @@ let compileHtml = (dir, file, css, js) => {
  * @param cb    the callback to execute when the css finishes
  *              compiling
  */
-let compileJs = (dir, file, cb) => {
-    return gulp.src(SRC + '/' + dir + '/' + file + '.js')
+let compileJs = (file, cb) => {
+    return gulp.src(SRC + '/' + file + '.js')
         .pipe(babel({
             presets: ['env'],
         }))
         .pipe(uglify())
-        .pipe(gulp.dest(BUILD + '/' + dir))
+        .pipe(gulp.dest(BUILD))
         .on('end', cb);
 }
 
@@ -160,12 +168,8 @@ gulp.task('clean:tmp', function() {
 
 // Compiles the html pages and their css/js assets.
 gulp.task('html:compile', ['html:copy'], function() {
-    const FILES = [
-        ['explore', [['', 'explore']], []],
-    ];
-
-    for (let file of FILES) {
-        compileHtml('', file[0], file[1], file[2]);
+    for (let file of PAGES) {
+        compileHtml('', file.html, file.css, file.js);
     }
 
     return true;
