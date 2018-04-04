@@ -2,9 +2,14 @@
 <html lang="en">
 <head>
     <title>Explore&ndash;SMARTLink</title>
-    <link rel="canonical" href="http://www.smartlink.org/explore">
+    <link rel="canonical" href="http://www.smartlink.org/explore/new-post">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <!-- inject-css explore.css -->
+    <!-- inject-css new-post.css -->
+    <script
+          src="https://code.jquery.com/jquery-3.3.1.min.js"
+          integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
+          crossorigin="anonymous"></script>
+    <script src="./explore.js"></script>
 </head>
 <body>
     <header id="page-header">
@@ -22,28 +27,10 @@
 		</div>
     </header>
 
-    <div id="action-bar">
-        <div class="trapezoid left"></div>
-        <div class="trapezoid right"></div>
-    	<div class="action-left">
-    		<img src="./asset/categories.svg" class="category-icon">
-    		<span class="category-selection">Search All</span>
-    	</div>
-    	<div class="action-center">
-    		<input type="text" placeholder="Search keywords, events, articles&hellip;" id="search">
-    	</div>
-    	<div class="action-right">
-    		<img src="./asset/new-post.svg" class="new-post-icon">
-    		<span class="new-post">Write a post</span>
-    	</div>
-    </div>
-
     <div id="main-content">
-        <article>
-            <h2 class="article-title">Canadian Cannabis Producer Faces German Recall</h2>
-            <span class="article-byline">by Brownies For Apple</span>
-            <div class="article-dateline">March 13, 2018</div>
-        </article>
+                <input type="text" title="article-title" />
+                <input type="textarea" title="article-body" />
+                <button id="submit-post" title="submit" >Submit</button>
     </div>
 
     <footer id="page-footer">

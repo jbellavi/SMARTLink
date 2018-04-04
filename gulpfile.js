@@ -24,6 +24,11 @@ const PAGES = [
         html: 'explore',
         css: ['explore'],
         js: [],
+    },
+    {
+        html: 'new-post',
+        css: ['new-post'],
+        js: [],
     }
 ]
 
