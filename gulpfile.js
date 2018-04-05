@@ -21,16 +21,16 @@ var BUILD = './com' + HTML_ROOT;
 
 const PAGES = [
     {
-        html: 'explore',
-        css: ['explore'],
+        html: "explore",
+        css: [['.', 'explore']],
         js: [],
     },
     {
-        html: 'new-post',
-        css: ['new-post'],
-        js: [],
-    }
-]
+        html: "new-post",
+        css: [['.', 'new-post']],
+        js: [['js', 'new-post']],
+    },
+];
 
 /* Helper functions: */
 
@@ -43,8 +43,8 @@ const PAGES = [
  * @param cb    the callback to execute when the css finishes
  *              compiling
  */
-let compileCss = (file, cb) => {
-    gulp.src(SRC + '/' + file + '.less')
+let compileCss = (dir, file, cb) => {
+    gulp.src(SRC + '/' + dir + '/' + file + '.less')
         .pipe(less({
             plugins: [autoprefix],
         }))
@@ -54,7 +54,7 @@ let compileCss = (file, cb) => {
         .pipe(cleanCSS({
             compatibility: '*',
         }))
-        .pipe(gulp.dest(TMP))
+        .pipe(gulp.dest(TMP + '/' + dir))
         .on('end', cb);
 };
 
@@ -90,13 +90,13 @@ let compileHtml = (dir, file, css, js) => {
             // recursive case
             cb = () => { compileHtml(dir, file, css, js.slice(1)); }
 
-            compileJs(js[0], cb);
+            compileJs(js[0][0], js[0][1], cb);
         }
     } else {
         // recursive case
         cb = () => { compileHtml(dir, file, css.slice(1), js); }
 
-        compileCss(css[0], cb);
+        compileCss(css[0][0], css[0][1], cb);
     }
 };
 
@@ -109,13 +109,13 @@ let compileHtml = (dir, file, css, js) => {
  * @param cb    the callback to execute when the css finishes
  *              compiling
  */
-let compileJs = (file, cb) => {
-    return gulp.src(SRC + '/' + file + '.js')
+let compileJs = (dir, file, cb) => {
+    return gulp.src(SRC + '/' + dir + '/' + file + '.js')
         .pipe(babel({
             presets: ['env'],
         }))
         .pipe(uglify())
-        .pipe(gulp.dest(BUILD))
+        .pipe(gulp.dest(BUILD + '/' + dir))
         .on('end', cb);
 }
 
@@ -174,6 +174,7 @@ gulp.task('clean:tmp', function() {
 // Compiles the html pages and their css/js assets.
 gulp.task('html:compile', ['html:copy'], function() {
     for (let file of PAGES) {
+        console.log(file.html);
         compileHtml('', file.html, file.css, file.js);
     }
 
