@@ -1,1 +1,81 @@
 @import "main";
+
+@hello-height: 169px;
+@hello-left: 160px;
+
+@hello-color-bg: @color-accent;
+@hello-color-text: white;
+
+#hello {
+    background-color: @hello-color-bg;
+    color: @hello-color-text;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    padding: 38px 20px 55px @hello-left;
+    height: @hello-height;
+    width: 100%;
+}
+
+#hello-top {
+    font-size: 22px;
+    font-weight: bold;
+}
+
+#hello-bottom {
+    font-size: 27px;
+}
+
+#main-content {
+    padding-top: @height-action - @offset-header;
+    display: flex;
+    flex-direction: column;
+    flex-grow: 1;
+}
+
+.text-input {
+    border: none;
+    border-top: 3px solid #efefef;
+    border-left: 3px solid #efefef;
+    margin: 20px 20px 0px 20px;
+    padding: 16px;
+    background-color: transparent;;
+    color: black;
+    resize: none;
+}
+
+#buttons {
+    margin: 20px;
+    padding: 12px;
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-end;
+}
+
+button {
+    border: none;
+    background-color: transparent;
+    height: 41px;
+    width: 133px;
+    font-size: 15px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+}
+
+#body-text {
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+}
+
+#submit-post {
+    border: 2px solid black;
+}
+
+.text-input::placeholder {
+    font-style: italic;
+    color: #bbb;
+
+}

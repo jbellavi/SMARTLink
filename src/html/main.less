@@ -21,6 +21,11 @@
 // default value
 @height-action: 0px;
 
+html, body {
+    height: 100%;
+    width: 100%;
+}
+
 body {
     display: flex;
     flex-direction: column;
@@ -119,4 +124,5 @@ body {
     width: @width-content;
     margin-left: @margin-content;
     padding-top: (20px + @height-action - @offset-header);
+    padding-bottom: (@height-footer + 20px)
 }

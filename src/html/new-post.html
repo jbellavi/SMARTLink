@@ -23,10 +23,17 @@
 		</div>
     </header>
 
+    <div id="hello">
+        <div id="hello-top">Hi <span id="name">Nadir</span>,</div>
+        <div id="hello-bottom">Write a story and share with the community.</div>
+    </div>
     <div id="main-content">
-        <input type="text" title="article-title" />
-        <input type="textarea" title="article-body" />
-        <button id="submit-post" title="submit" >Submit</button>
+        <input id="title" type="text" title="article-title" class="text-input" placeholder="Title"/>
+        <textarea id="body-text" title="article-body" class="text-input" placeholder="Tell your story&hellip;"></textarea>
+        <div id="buttons">
+            <button id="cancel-post" title="submit" >Cancel</button>
+            <button id="submit-post" title="submit" >Submit</button>
+        </div>
     </div>
 
     <footer id="page-footer">
