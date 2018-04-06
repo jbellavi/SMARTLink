@@ -30,6 +30,11 @@ const PAGES = [
         css: [['.', 'new-post']],
         js: [['js', 'new-post']],
     },
+    {
+        html: "read-post",
+        css: [['.', 'read-post']],
+        js: [['js', 'read-post']],
+    },
 ];
 
 /* Helper functions: */
