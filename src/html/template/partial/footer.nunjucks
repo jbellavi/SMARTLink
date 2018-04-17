@@ -1,0 +1,30 @@
+<footer class="footer">
+	<div class="footer-left">
+		<div class="footer-link">
+			<a href="faq-link">
+				FAQ
+			</a>
+		</div>
+		<div class="footer-separator">
+			/
+		</div>
+		<div class="footer-link">
+			<a href="disclaimer-link">
+				Disclaimer
+			</a>
+		</div>
+		<div class="footer-separator">
+			/
+		</div>
+		<div class="footer-link">
+			<a href="contact-link">
+				Contact Us
+			</a>
+		</div>
+	</div>
+	<div class="footer-right">
+		<div>
+			<img class="smart-logo" src="asset/logo.png">
+		</div>
+	</div>
+</footer>

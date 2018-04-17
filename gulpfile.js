@@ -8,6 +8,7 @@ var htmlmin         = require('gulp-htmlmin');
 var injectCSS       = require('gulp-inject-css');
 var less            = require('gulp-less');
 var LessAutoprefix  = require('less-plugin-autoprefix');
+var nunjucks        = require('gulp-nunjucks-render');
 var sequence        = require('gulp-sequence');
 var uglify          = require('gulp-uglify');
 
@@ -20,26 +21,26 @@ var TMP = './tmp' + HTML_ROOT; // Intermediate build files.
 var BUILD = './com' + HTML_ROOT;
 
 const PAGES = [
-    {
-        html: "explore",
-        css: [['.', 'explore']],
-        js: [],
-    },
+    // {
+    //     html: "explore",
+    //     css: [['.', 'explore']],
+    //     js: [],
+    // },
     {
         html: "index",
         css: [['css', 'index']],
         js: [],
-    },
-    {
-        html: "new-post",
-        css: [['.', 'new-post']],
-        js: [['js', 'new-post']],
-    },
-    {
-        html: "read-post",
-        css: [['.', 'read-post']],
-        js: [['js', 'read-post']],
-    },
+    }
+    // {
+    //     html: "new-post",
+    //     css: [['.', 'new-post']],
+    //     js: [['js', 'new-post']],
+    // },
+    // {
+    //     html: "read-post",
+    //     css: [['.', 'read-post']],
+    //     js: [['js', 'read-post']],
+    // },
 ];
 
 /* Helper functions: */
@@ -68,6 +69,17 @@ let compileCss = (dir, file, cb) => {
         .on('end', cb);
 };
 
+
+let copyHtml = (dir, file, cb) => {
+    return gulp.src(SRC + '/page/' + dir + '/' + file + '.nunjucks')
+        // Renders template with nunjucks
+        .pipe(nunjucks({
+            path: [SRC + '/template']
+        }))
+        // output files in app folder
+        .pipe(gulp.dest(TMP))
+        .on('end', cb);
+}
 /**
  * Compiles a .html file through htmlmin, outputting it to the
  * target directory.
@@ -92,9 +104,7 @@ let compileHtml = (dir, file, css, js) => {
                 .pipe(gulp.dest(BUILD + '/' + dir));
             }
 
-            gulp.src(SRC + '/' + dir + '/' + file + '.html')
-                .pipe(gulp.dest(TMP + '/' + dir))
-                .on('end', cb);
+            copyHtml(dir, file, cb);
 
         } else {
             // recursive case
@@ -129,19 +139,6 @@ let compileJs = (dir, file, cb) => {
         .on('end', cb);
 }
 
-
-/**
- * Copies a file or directory.
- *
- * @param dir   the directory containing the source file
- * @param file  the source file
- * @param bld   the build file or directory
- */
-let copyFile = (dir, file, bld) => {
-    gulp.src(SRC + '/' + dir + '/' + file)
-        .pipe(gulp.dest(bld + '/' + dir));
-}
-
 /**
  * Copies a glob to the target directory
  * without modification.
@@ -155,17 +152,6 @@ let copyGlob = (src, dest, bld) => {
         .pipe(gulp.dest(bld + '/' + dest));
 };
 
-/**
- * Copies an html file to the intermediate folder.
- *
- * @param dir   the directory containing the source
- * @param file  the source file
- */
-let copyHtml = (dir, file) => {
-    gulp.src(SRC + '/' + dir + '/' + file + '.html')
-        .pipe(gulp.dest(TMP + '/' + dir));
-};
-
 // Cleans up all build files.
 gulp.task('clean', ['clean:tmp'], function() {
     return del([BUILD + '/**/*', 'com.zip']);
@@ -173,7 +159,13 @@ gulp.task('clean', ['clean:tmp'], function() {
 
 // Copies raw html files to the temp directory.
 gulp.task('html:copy', function() {
-    copyGlob('**/*.html', '', TMP);
+    return gulp.src(SRC + '/page/**/*.+(html|nunjucks)')
+        // Renders template with nunjucks
+        .pipe(nunjucks({
+            path: [SRC + '/template']
+        }))
+        // output files in app folder
+        .pipe(gulp.dest(TMP))
 });
 
 // Cleans up intermediary build files.

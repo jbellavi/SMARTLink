@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>SMART</title>
+	<!-- inject-css css/index.css -->
+</head>
+<body>
+
+	<div id="container">
+		{% include "partial/header.nunjucks" %}
+
+		<article class="content">
+			{% block content %} {% endblock %}
+		</article>
+
+		{% include "partial/footer.nunjucks" %}
+	</div>
+</body>
+</html>
