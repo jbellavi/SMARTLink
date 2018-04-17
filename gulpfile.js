@@ -21,26 +21,8 @@ var TMP = './tmp' + HTML_ROOT; // Intermediate build files.
 var BUILD = './com' + HTML_ROOT;
 
 const PAGES = [
-    // {
-    //     html: "explore",
-    //     css: [['.', 'explore']],
-    //     js: [],
-    // },
-    {
-        html: "index",
-        css: [['css', 'index']],
-        js: [],
-    }
-    // {
-    //     html: "new-post",
-    //     css: [['.', 'new-post']],
-    //     js: [['js', 'new-post']],
-    // },
-    // {
-    //     html: "read-post",
-    //     css: [['.', 'read-post']],
-    //     js: [['js', 'read-post']],
-    // },
+    "index",
+    "login",
 ];
 
 /* Helper functions: */
@@ -74,7 +56,10 @@ let copyHtml = (dir, file, cb) => {
     return gulp.src(SRC + '/page/' + dir + '/' + file + '.nunjucks')
         // Renders template with nunjucks
         .pipe(nunjucks({
-            path: [SRC + '/template']
+            path: [SRC + '/template'],
+            data: {
+                css: file,
+            }
         }))
         // output files in app folder
         .pipe(gulp.dest(TMP))
@@ -154,7 +139,7 @@ let copyGlob = (src, dest, bld) => {
 
 // Cleans up all build files.
 gulp.task('clean', ['clean:tmp'], function() {
-    return del([BUILD + '/**/*', 'com.zip']);
+    return del(['tmp', BUILD + '/**/*', 'com.zip']);
 });
 
 // Copies raw html files to the temp directory.
@@ -176,8 +161,8 @@ gulp.task('clean:tmp', function() {
 // Compiles the html pages and their css/js assets.
 gulp.task('html:compile', ['html:copy'], function() {
     for (let file of PAGES) {
-        console.log(file.html);
-        compileHtml('', file.html, file.css, file.js);
+        console.log(file);
+        compileHtml('', file, [['css', file]], [['js', file]]);
     }
 
     return true;

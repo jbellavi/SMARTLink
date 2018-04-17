@@ -2,8 +2,8 @@
 <html lang="en">
 <head>
 	<meta charset="UTF-8">
-	<title>SMART</title>
-	<!-- inject-css css/index.css -->
+	<title>{{ title }}</title>
+	<!-- inject-css css/{{ css }}.css -->
 </head>
 <body>
 
