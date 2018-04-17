@@ -6,20 +6,27 @@
 	flex-direction: column;
 }
 
-.header-top {
-	height: 57px;
+.header-row() {
 	display: flex;
 	flex-direction: row;
 	align-items: center;
+	border-bottom: 1px solid @color-header-light;
+}
+
+.header-top {
+	.header-row();
+	height: 60px;
 	justify-content: space-between;
-	border-bottom: 1px solid @color-header-grey;
 }
 
 .header-top-left {
 	display: flex;
 	flex-direction: row;
 	justify-content: center;
-	width: 100px;
+}
+
+.smart-logo-header {
+	padding-left: 20px;
 }
 
 .smart-logo {
@@ -27,4 +34,57 @@
 	width: 90px;
 }
 
+.header-end {
+	display: flex;
+	flex-direction: row;
+	align-items: center;
+	padding-right: 20px;
+}
 
+.login-button {
+	font-family: @font-family-login;
+	font-weight: 400;
+	font-style: italic;
+	font-size: 22px;
+
+	text-transform: uppercase;
+	margin-left: 20px;
+}
+
+.header-bot {
+	.header-row();
+	height: 60px;
+	justify-content: space-between;
+}
+
+.header-bot-left {
+	width: 130px;
+	display: flex;
+	flex-direction: row;
+	justify-content: center;
+}
+
+.icon-categories {
+	height: 50px;
+	width: 50px;
+}
+
+.header-bot-right {
+	display: flex;
+	flex-grow: 1;
+	flex-direction: row;
+	align-items: center;
+	height: 100%;
+}
+
+.icon-search {
+	height: 50px;
+	width: 50px;
+	margin: 0px 10px;
+}
+
+.header-search {
+	display: flex;
+	flex-grow: 1;
+	height: 100%;
+}
