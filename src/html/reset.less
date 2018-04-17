@@ -49,7 +49,19 @@ a {
 	box-sizing: border-box;
 }
 
-html, body {
-	// so we don't get weird footers in the middle of the page or anything.
+// so we don't get weird footers in the middle of the page or anything.
+html {
+	height: 100%;
+	overflow-y: scroll;
+}
+
+body {
 	min-height: 100%;
+}
+
+#container {
+	display: flex;
+	flex-direction: column;
+	flex-shrink: 0;
+	flex-grow: 1;
 }
