@@ -26,6 +26,11 @@ const PAGES = [
         js: [],
     },
     {
+        html: "index",
+        css: [['css', 'index']],
+        js: [],
+    },
+    {
         html: "new-post",
         css: [['.', 'new-post']],
         js: [['js', 'new-post']],
