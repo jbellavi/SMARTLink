@@ -1,1 +1,59 @@
 @import "common";
+
+.block() {
+	width: 100%;
+	padding: 30px;
+
+	display: flex;
+	flex-direction: row;
+}
+
+.wrapper {
+	width: 100%;
+	flex-grow: 1;
+
+	display: flex;
+	flex-direction: column;
+	justify-content: flex-start;
+}
+
+.lce-button(@image-source) {
+	display: flex;
+	flex-direction: row;
+	flex-grow: 1;
+	flex-basis: 25%;
+	height: 100%;
+	align-items: center;
+	justify-content: center;
+
+
+	font-family: @font-family-lce-button;
+	font-weight: 500;
+	font-style: italic;
+	font-size: 30px;
+	text-transform: uppercase;
+	color: @color-text-white;
+
+	background-image: url("/asset/@{image-source}.jpg");
+	background-size: cover;
+}
+
+.lce-block {
+	.block();
+	padding: 0;
+	height: 240px;
+}
+
+.learn-button {
+	.lce-button(learn);
+}
+
+.connect-button {
+	.lce-button(connect);
+	margin: 0px 3px;
+}
+
+.explore-button {
+	.lce-button(explore);
+}
+
