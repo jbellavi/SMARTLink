@@ -1,6 +1,6 @@
 @import "common";
 
-.block() {
+.block {
 	width: 100%;
 	max-width: 100%;
 	padding: 50px;
@@ -63,10 +63,6 @@
 	.lce-button(explore);
 }
 
-.about-block {
-	.block();
-}
-
 .block-content {
 	width: 100%;
 	max-width: 100%;
@@ -100,7 +96,7 @@
 .block-content-column-small {
 	.block-content-column();
 
-	font-size: 15px;
+	font-size: 18px;
 }
 
 .block-header {
@@ -123,4 +119,21 @@
 	font-size: 30px;
 	font-family: @font-family-quote;
 	text-align: center;
+}
+
+.partners-content-outer {
+	.block-content();
+	align-items: center;
+}
+
+.partners-content-inner {
+	.block-content();
+	max-width: 60%;
+	flex-wrap: wrap;
+}
+
+.partner {
+	height: 60px;
+	width: 120px;
+	margin: 30px;
 }
