@@ -2,7 +2,13 @@
 <html lang="en">
 <head>
 	<meta charset="UTF-8">
-	<title>{{ title }}</title>
+	<title>{% block title %} {% endblock %}</title>
+	<!-- the default css file is <filename>.less. If you would like
+		to use multiple .less files, create the default .less file
+	    and import the other .less files into it using @import.
+		For example, the default css file for login.njk is 
+		login.less. To use common.less as well, login.less must
+	    import it. -->
 	<!-- inject-css css/{{ css }}.css -->
 </head>
 <body>
