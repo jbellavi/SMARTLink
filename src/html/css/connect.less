@@ -1,0 +1,52 @@
+@import "common";
+
+.welcome {
+	width: 100%;
+	display: flex;
+	flex-direction: row;
+	background-color: @color-connect-employers;
+}
+
+.welcome-section() {
+	padding: 60px;
+	color: @color-text-white;
+	display: flex;
+	flex-direction: column;
+	width: 50%;
+	flex-grow: 0;
+	flex-shrink: 0;
+	height: auto;
+	font-family: @font-family-main;
+	font-size: 20px;
+	align-items: start;
+}
+
+.welcome-students {
+	.welcome-section();
+	background-color: @color-connect-students;
+}
+
+.welcome-employers {
+	.welcome-section();
+}
+
+.welcome-header {
+	font-weight: 500;
+	font-size: 30px;
+	margin-bottom: 40px;
+}
+
+.welcome-button {
+	font-weight: 500;
+	font-size: 16px;
+	padding: 7px 14px;
+	border: 2px solid @color-text-white;
+	border-radius: 2px;
+	margin-top: auto;
+	flex-grow: 0;
+	display: flex;
+}
+
+.welcome-text {
+	margin-bottom: 40px;
+}

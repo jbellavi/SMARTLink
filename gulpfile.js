@@ -23,6 +23,7 @@ var BUILD = './com' + HTML_ROOT;
 const PAGES = [
     "index",
     "login",
+    "connect",
 ];
 
 /* Helper functions: */
