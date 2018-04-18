@@ -24,6 +24,7 @@ const PAGES = [
     "index",
     "login",
     "connect",
+    "job-list",
 ];
 
 /* Helper functions: */
