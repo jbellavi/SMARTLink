@@ -53,7 +53,7 @@ let compileCss = (dir, file, cb) => {
 
 
 let copyHtml = (dir, file, cb) => {
-    return gulp.src(SRC + '/page/' + dir + '/' + file + '.nunjucks')
+    return gulp.src(SRC + '/page/' + dir + '/' + file + '.njk')
         // Renders template with nunjucks
         .pipe(nunjucks({
             path: [SRC + '/template'],
@@ -144,7 +144,7 @@ gulp.task('clean', ['clean:tmp'], function() {
 
 // Copies raw html files to the temp directory.
 gulp.task('html:copy', function() {
-    return gulp.src(SRC + '/page/**/*.+(html|nunjucks)')
+    return gulp.src(SRC + '/page/**/*.+(html|njk)')
         // Renders template with nunjucks
         .pipe(nunjucks({
             path: [SRC + '/template']
