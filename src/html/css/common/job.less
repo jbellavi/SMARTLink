@@ -1,3 +1,6 @@
+// This less files depends on common.less.
+// Make sure you import it as well!
+
 @hello-color-bg: @color-accent;
 @hello-color-text: white;
 
@@ -49,6 +52,9 @@
 }
 
 .job-content {
-	.content();
+	display: flex;
+	flex-direction: column;
 	margin-top: 0;
+	flex-grow: 1;
+	flex-shrink: 0;
 }
