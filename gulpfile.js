@@ -92,6 +92,9 @@ let compileHtml = (dir, file, css, js) => {
                 .pipe(injectCSS())
                 .pipe(htmlmin({
                     collapseWhitespace: true,
+                    collapseBooleanAttributes: true,
+                    removeComments: true,
+                    removeRedundantAttributes: true,
                 }))
                 .pipe(gulp.dest(BUILD + '/' + dir));
             }
