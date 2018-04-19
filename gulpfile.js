@@ -35,8 +35,6 @@ const PAGES = [
     "faq",
 ];
 
-/* Helper functions: */
-
 /**
  * Pipes a .less file through less, autoprefixer, and clean
  * css, outputting it to the target directory.
