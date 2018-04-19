@@ -31,6 +31,7 @@ const PAGES = [
     "login",
     "new-post",
     "learn",
+    "learn-topic",
     "faq",
 ];
 
