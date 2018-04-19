@@ -29,6 +29,7 @@ const PAGES = [
     "login",
     "new-post",
     "learn",
+    "faq",
 ];
 
 /* Helper functions: */
