@@ -62,6 +62,7 @@ let copyHtml = (dir, file, cb) => {
             path: [SRC + '/template'],
             data: {
                 css: file,
+                js: file,
             }
         }))
         // output files in app folder
