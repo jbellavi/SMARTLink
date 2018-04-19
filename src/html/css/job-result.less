@@ -1,1 +1,73 @@
 @import "common/common";
+
+.job-title {
+	align-self: center;
+	width: 80%;
+	margin-top: 20px;
+	font-size: 24px;
+	padding: 4px 0px;
+	border-bottom: 1px solid @color-text-grey;
+	font-family: @font-family-title;
+}
+
+.job-body {
+	align-self: center;
+	width: 80%;
+	display: flex;
+	flex-direction: row;
+	padding-top: 20px;
+}
+
+.job-left {
+	display: flex;
+	flex-direction: column;
+	width: 20%;
+	padding-right: 20px;
+	border-right: 1px solid @color-text-grey;
+}
+
+.job-right {
+	display: flex;
+	flex-direction: column;
+	width: 80%;
+	padding-left: 20px;
+	flex-grow: 0;
+}
+
+.save {
+	align-self: center;
+	text-transform: uppercase;
+	color: @color-text-grey;
+	font-family: @font-family-main;
+	font-size: 16px;
+	margin-bottom: 20px;
+}
+
+.quick-info {
+	font-size: 20px;
+	font-family: @font-family-main;
+}
+
+.apply {
+	font-size: 24px;
+	font-family: @font-family-main;
+	padding: 10px 50px;
+	align-self: center;
+	border: 2px solid @color-black;
+	border-radius: 2px;
+	margin: 20px 0px;
+}
+
+.job-info-title {
+	font-size: 16px;
+	text-transform: uppercase;
+	font-family: @font-family-title;
+	margin-bottom: 15px;
+}
+
+.job-info {
+	font-size: 14px;
+	font-family: @font-family-main;
+	margin-bottom: 30px;
+	line-height: 1.3;
+}
