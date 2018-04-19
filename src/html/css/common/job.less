@@ -1,0 +1,54 @@
+@hello-color-bg: @color-accent;
+@hello-color-text: white;
+
+.hello {
+    background-color: @hello-color-bg;
+    color: @hello-color-text;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    padding: 38px 20% 38px 20%;
+    width: 100%;
+    font-family: @font-family-main;
+}
+
+.hello-top {
+    font-size: 22px;
+    font-weight: bold;
+}
+
+.hello-bottom {
+    font-size: 27px;
+    margin-top: 10px;
+    max-width: 600px;
+}
+
+.hello-search-row {
+	height: 40px;
+	display: flex;
+	flex-direction: row;
+	margin-top: 20px;
+}
+
+.hello-search {
+	height: 100%;
+	padding: 10px;
+	flex-grow: 1;
+	display: flex;
+}
+
+.search-button {
+	height: 100%;	
+	padding: 0px 30px;
+	margin-left: 40px;
+	display: flex;
+	flex-direction: row;
+	align-items: center;
+	border: 2px solid @color-text-white;
+	border-radius: 2px;
+}
+
+.job-content {
+	.content();
+	margin-top: 0;
+}
