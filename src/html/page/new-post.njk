@@ -1,0 +1,18 @@
+{% extends "layout.njk" %}
+
+{% block title %}New Posts - SMART{% endblock %}
+
+{% block content %}
+<div class="hello">
+    <div class="hello-top">Hi <span class="name">Nadir</span>,</div>
+    <div class="hello-bottom">Write a story and share with the community.</div>
+</div>
+<div class="create-post">
+    <input id="title" type="text" title="article-title" class="text-input" placeholder="Title"/>
+    <textarea id="body-text" title="article-body" class="body-text" placeholder="Tell your story&hellip;"></textarea>
+    <div class="buttons">
+        <button class="cancel-post" title="submit" >Cancel</button>
+        <button class="submit-post" title="submit" >Submit</button>
+    </div>
+</div>
+{% endblock %}

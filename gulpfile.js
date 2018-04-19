@@ -21,10 +21,11 @@ var TMP = './tmp' + HTML_ROOT; // Intermediate build files.
 var BUILD = './com' + HTML_ROOT;
 
 const PAGES = [
-    "index",
-    "login",
     "connect",
+    "index",
     "job-list",
+    "login",
+    "new-post",
 ];
 
 /* Helper functions: */
