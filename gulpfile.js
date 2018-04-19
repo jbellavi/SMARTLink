@@ -6,6 +6,7 @@ var cleanCSS        = require('gulp-clean-css');
 var combineMQ       = require('gulp-combine-mq');
 var htmlmin         = require('gulp-htmlmin');
 var injectCSS       = require('gulp-inject-css');
+var inlinesource    = require('gulp-inline-source');
 var less            = require('gulp-less');
 var LessAutoprefix  = require('less-plugin-autoprefix');
 var nunjucks        = require('gulp-nunjucks-render');
@@ -92,6 +93,7 @@ let compileHtml = (dir, file, css, js) => {
             cb = () => {
                 gulp.src(TMP + '/' + dir + '/' + file + '.html')
                 .pipe(injectCSS())
+                .pipe(inlinesource())
                 .pipe(htmlmin({
                     collapseWhitespace: true,
                     collapseBooleanAttributes: true,
@@ -132,7 +134,7 @@ let compileJs = (dir, file, cb) => {
             presets: ['env'],
         }))
         .pipe(uglify())
-        .pipe(gulp.dest(BUILD + '/' + dir))
+        .pipe(gulp.dest(TMP + '/' + dir))
         .on('end', cb);
 }
 
