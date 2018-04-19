@@ -22,6 +22,7 @@ var BUILD = './com' + HTML_ROOT;
 
 const PAGES = [
     "connect",
+    "disclaimer",
     "index",
     "job-list",
     "job-search",
