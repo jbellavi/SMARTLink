@@ -33,6 +33,7 @@ const PAGES = [
     "learn",
     "learn-topic",
     "faq",
+    "explore",
 ];
 
 /**
@@ -173,12 +174,14 @@ gulp.task('clean:tmp', function() {
 
 // Compiles the html pages and their css/js assets.
 gulp.task('html:compile', ['html:copy'], function() {
-    for (let file of PAGES) {
-        console.log(file);
-        compileHtml('', file, [['css', file]], [['js', file]]);
-    }
+    return compileJs('js/api', 'api', () => {
+        for (let file of PAGES) {
+            console.log(file);
+            compileHtml('', file, [['css', file]], [['js', file]]);
+        }
 
-    return true;
+        return true;
+    });
 });
 
 // Copies raw html files to the 
