@@ -26,6 +26,7 @@ const PAGES = [
     "job-list",
     "login",
     "new-post",
+    "learn",
 ];
 
 /* Helper functions: */
