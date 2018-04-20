@@ -48,6 +48,10 @@
 		init.set("title", data.title);
 		init.set("author", "by " + data.author);
 		init.set("date", data.date);
+
+		let img = 'url("' + data.image + '")';
+		document.getElementById('image').style.backgroundImage = img;
+
 		init.content(data.content);
 	};
 

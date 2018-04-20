@@ -48,20 +48,23 @@
 		for (let article of articles) {
 			let byline = "by " + article.author;
 			let via = "via " + article.source;
+			let url = "/article.html#" + article.id;
 
 			content.appendChild(
-				<div class="article">
-					<div class="article-image"></div>
-					<div class="article-content">
-						<div class="article-header">
-							<h2 class="article-title">{article.title}</h2>
-							<div class="byline">{byline}</div>
+				<a class="article-wrap" href={url}>
+					<div class="article">
+						<div class="article-image"></div>
+						<div class="article-content">
+							<div class="article-header">
+								<h2 class="article-title">{article.title}</h2>
+								<div class="byline">{byline}</div>
+							</div>
+							<div class="miniline">{article.date}</div>
+							<div class="summary">{article.summary}</div>
+							<div class="miniline">{via}</div>
 						</div>
-						<div class="miniline">{article.date}</div>
-						<div class="summary">{article.summary}</div>
-						<div class="miniline">{via}</div>
 					</div>
-				</div>
+				</a>
 			);
 		}
 	};
