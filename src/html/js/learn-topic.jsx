@@ -19,8 +19,16 @@
 		let section = "marijuana";
 
 		api.call.getArticles(section, init.success, init.failure)
-		
 	};
+
+	/**
+	 * Computes the url of the given article.
+	 */
+	init.getUrl = (article) => {
+		return article.source === '' 
+			   ? "/article.html#" + article.id
+			   : article.url;
+	}
 
 	/**
 	 * Finds the element with the given id on the page and assigns
@@ -48,7 +56,9 @@
 		for (let article of articles) {
 			let byline = "by " + article.author;
 			let via = "via " + article.source;
-			let url = "/article.html#" + article.id;
+			let url = init.getUrl(article);
+
+			let viaLine = article.source === '' ? '' : <div class="miniline">{via}</div>
 
 			content.appendChild(
 				<a class="article-wrap" href={url}>
@@ -62,6 +72,7 @@
 							<div class="miniline">{article.date}</div>
 							<div class="summary">{article.summary}</div>
 							<div class="miniline">{via}</div>
+							{viaLine}
 						</div>
 					</div>
 				</a>

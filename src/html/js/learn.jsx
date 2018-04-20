@@ -59,6 +59,15 @@
 	}
 
 	/**
+	 * Computes the url of the given article.
+	 */
+	init.getUrl = (article) => {
+		return article.source === '' 
+			   ? "/article.html#" + article.id
+			   : article.url;
+	}
+
+	/**
 	 * Called when a section loads sucdessfully.
 	 *
 	 * @param articles     the data returned from the API
@@ -103,11 +112,15 @@
 	init.largeArticle = (article) => {
 		let byline = "by " + article.author;
 
+		let url = init.getUrl(article);
+
 		return (
-			<div class="article-large">
-				<div class="article-title">{article.title}</div>
-				<div class="article-byline">{byline}</div>
-			</div>
+			<a href={url} class="article-large-wrap">
+				<div class="article-large">
+					<div class="article-title">{article.title}</div>
+					<div class="article-byline">{byline}</div>
+				</div>
+			</a>
 		);
 	};
 
@@ -119,12 +132,16 @@
 	init.smallArticle = (article) => {
 		let byline = "by " + article.author;
 
+		let url = init.getUrl(article);
+
 		return (
-			<div class="article-small">
-				<div class="article-small-image"></div>
-				<div class="article-small-title">{article.title}</div>
-				<div class="article-small-byline">{byline}</div>
-			</div>
+			<a href={url} class="article-small-wrap">
+				<div class="article-small">
+					<div class="article-small-image"></div>
+					<div class="article-small-title">{article.title}</div>
+					<div class="article-small-byline">{byline}</div>
+				</div>
+			</a>
 		);
 	};
 
