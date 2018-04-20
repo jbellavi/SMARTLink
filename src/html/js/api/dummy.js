@@ -68,6 +68,41 @@ class DummyAPI {
 	}
 
 	/**
+	 * Gets the saved respones for getArticle
+	 */
+	getArticlesRes() {
+		return [
+			{
+				id: '420',
+				image: '/asset/article-abc.jpg',
+				title: 'How to properly inhale',
+				author: 'Rotomoto',
+				date: '4/20/2018',
+				summary: 'I started painting as a hobby when I was little. I didn\'t know I had any talent. I believe talent is just a pursued interest. Anybody can do what I do. This painting comes right out of your heart.',
+				source: 'PR0HBTD',
+			},
+			{
+				id: '420',
+				image: '/asset/article-abc.jpg',
+				title: 'How to properly inhale II',
+				author: 'Rotomoto',
+				date: '4/20/2018',
+				summary: 'I started painting as a hobby when I was little. I didn\'t know I had any talent. I believe talent is just a pursued interest. Anybody can do what I do. This painting comes right out of your heart.',
+				source: 'PR0HBTD',
+			},
+			{
+				id: '420',
+				image: '/asset/article-abc.jpg',
+				title: 'How to properly inhale III',
+				author: 'Rotomoto',
+				date: '4/20/2018',
+				summary: 'I started painting as a hobby when I was little. I didn\'t know I had any talent. I believe talent is just a pursued interest. Anybody can do what I do. This painting comes right out of your heart.',
+				source: 'PR0HBTD',
+			},
+		];
+	}
+
+	/**
 	 * Calls the callback with the given data after a short delay.
 	 *
 	 * @param callback  the callback function

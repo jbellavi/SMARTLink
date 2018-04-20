@@ -136,8 +136,9 @@ let api = {
 	 * @param failure    the function to call when the API call returns
 	 *                   unsuccessfully
 	 */
-	call.getSection = (section, success, failure) => {
-		get("section", {section}, success, failure);
+	call.getArticles = (section, success, failure) => {
+		// get("section", {section}, success, failure);
+		dummy.success(success, dummy.getArticlesRes());
 	};
 
 	/**
