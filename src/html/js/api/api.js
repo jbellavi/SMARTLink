@@ -124,7 +124,8 @@ let api = {
 	 *                   unsuccessfully
 	 */
 	call.getSections = (success, failure) => {
-		get("sections", {}, success, failure);
+		// get("section", {section}, success, failure);
+		dummy.success(success, dummy.getSectionsRes());
 	};
 
 	/**
@@ -136,8 +137,9 @@ let api = {
 	 * @param failure    the function to call when the API call returns
 	 *                   unsuccessfully
 	 */
-	call.getSection = (section, success, failure) => {
-		get("section", {section}, success, failure);
+	call.getArticles = (section, success, failure) => {
+		// get("section", {section}, success, failure);
+		dummy.success(success, dummy.getArticlesRes());
 	};
 
 	/**
@@ -150,13 +152,14 @@ let api = {
 	 *                   unsuccessfully
 	 */
 	call.getArticle = (id, success, failure) => {
-		get("article", {id}, success, failure);
+		// get("article", {id}, success, failure);
+		dummy.success(success, dummy.getArticleRes());
 	};
 
 	/**
 	 * Gets search results for a search on the connect page.
 	 *
-	 * @param uid      the id of the user making the search
+	 * @param uid      the id of the userma king the search
 	 * @param query    the search query
 	 * @param success  the function to call when the API call returns
 	 *                 successfully
