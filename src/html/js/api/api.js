@@ -96,7 +96,7 @@ let api = {
 					if (res.success) {
 						success(res.data);
 					} else {
-						failure();
+						failure(res.data);
 					}
 				} else if (req.status == 400) {
 					// 400 ERROR
@@ -122,9 +122,61 @@ let api = {
 	 * @param failure    the function to call when the API call returns
 	 *                   unsuccessfully
 	 */
-	call.listSections = (succes, failure) => {
-		post("list_sections", {}, success, failure);
+	call.getSections = (success, failure) => {
+		get("sections", {}, success, failure);
 	};
 
-	console.log('api initialized');
+	/**
+	 * GETs an array of all articles in a given section of the LEARN page.
+	 *
+	 * @param section    the section to look up
+	 * @param success    the function to call when the API call returns
+	 *                   successfully
+	 * @param failure    the function to call when the API call returns
+	 *                   unsuccessfully
+	 */
+	call.getSection = (section, success, failure) => {
+		get("section", {section}, success, failure);
+	};
+
+	/**
+	 * GETs a single article.
+	 *
+	 * @param id         the id of the article
+	 * @param success    the function to call when the API call returns
+	 *                   successfully
+	 * @param failure    the function to call when the API call returns
+	 *                   unsuccessfully
+	 */
+	call.getArticle = (id, success, failure) => {
+		get("article", {id}, success, failure);
+	};
+
+	/**
+	 * Gets search results for a search on the connect page.
+	 *
+	 * @param uid      the id of the user making the search
+	 * @param query    the search query
+	 * @param success  the function to call when the API call returns
+	 *                 successfully
+	 * @param failure  the function to call when the API call returns
+	 *                 unsuccessfully
+	 */
+	call.getConnectSearchResults = (uid, query, success, failure) => {
+		get("search", {uid, query}, success, failure);
+	};
+
+	/**
+	 * Gets all the data for a single opportunity page.
+	 *
+	 * @param uid      the id of the user making the request
+	 * @param id       the id of the opportunity being fetched
+	 * @param success  the function to call when the API call returns
+	 *                 successfully
+	 * @param failure  the function to call when the API call returns
+	 *                 unsuccessfully
+	 */
+	call.getOpportunity = (uid, id, success, failure) => {
+		get("opportunity", {uid, id}, success, failure);
+	};
 })();
