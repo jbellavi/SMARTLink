@@ -129,7 +129,7 @@ let compileHtml = (dir, file, css, js) => {
  *              compiling
  */
 let compileJs = (dir, file, cb) => {
-    return gulp.src(SRC + '/' + dir + '/' + file + '.js')
+    return gulp.src(SRC + '/' + dir + '/' + file + '.+(js|jsx)')
         .pipe(babel({
             presets: ['env'],
             plugins: ['transform-react-jsx'],

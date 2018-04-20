@@ -47,7 +47,8 @@
 		let results = document.getElementById('results');
 
 		for (let job of jobs) {
-			let url = "job-results.html#" + job.id;
+			let url = "job-result.html#" + job.id;
+
 			results.appendChild(
 				<div class="job">
 		            <h3 class="job-title">{job.title}</h3>
@@ -56,7 +57,7 @@
 		            <p class="job-description">{job.compensation}</p>
 		            <p class="job-description">application deadline: {job.deadline}</p>
 		            <div class="job-interact">
-		                <a href={job.id} class="read-more">Read More</a>
+		                <a href={url} class="read-more">Read More</a>
 		                <a href={job.link} class="apply">Apply</a>
 		            </div>
 		        </div>
