@@ -156,6 +156,6 @@ class DummyAPI {
 	 * @param data      the data to pass
 	 */
 	success(callback, data) {
-		setTimeout(() => callback(data), 1500);
+		setTimeout(() => callback(data), 500 + Math.floor(Math.random() * 1000));
 	}
 }

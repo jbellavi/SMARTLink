@@ -1,2 +1,23 @@
 @import "common/common";
-@import "common/simple";
+
+.wrapper {
+	flex-grow: 1;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	flex-direction: column;
+	background-color: @color-login-dialogue-outer;
+}
+
+.title {
+	font-family: @font-family-title;
+	font-size: 25px;
+	font-weight: 500;
+	margin-bottom: 20px;
+}
+
+.dialogue {
+	padding: 40px;
+	background-color: @color-login-dialogue-inner;
+	border-radius: 2px;
+}
