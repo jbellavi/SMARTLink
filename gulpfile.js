@@ -34,6 +34,7 @@ const PAGES = [
     "learn-topic",
     "faq",
     "explore",
+    "article",
 ];
 
 /**

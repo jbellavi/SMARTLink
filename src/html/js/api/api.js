@@ -150,13 +150,14 @@ let api = {
 	 *                   unsuccessfully
 	 */
 	call.getArticle = (id, success, failure) => {
-		get("article", {id}, success, failure);
+		// get("article", {id}, success, failure);
+		dummy.success(success, dummy.getArticleRes());
 	};
 
 	/**
 	 * Gets search results for a search on the connect page.
 	 *
-	 * @param uid      the id of the user making the search
+	 * @param uid      the id of the userma king the search
 	 * @param query    the search query
 	 * @param success  the function to call when the API call returns
 	 *                 successfully
