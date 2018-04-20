@@ -163,8 +163,9 @@ let api = {
 	 * @param failure  the function to call when the API call returns
 	 *                 unsuccessfully
 	 */
-	call.getConnectSearchResults = (uid, query, success, failure) => {
-		get("search", {uid, query}, success, failure);
+	call.getOpportunities = (uid, query, success, failure) => {
+		// get("opportunities", {uid, query}, success, failure);
+		dummy.success(success, dummy.getOpportunitiesRes());
 	};
 
 	/**

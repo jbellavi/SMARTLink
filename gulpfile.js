@@ -132,6 +132,7 @@ let compileJs = (dir, file, cb) => {
     return gulp.src(SRC + '/' + dir + '/' + file + '.js')
         .pipe(babel({
             presets: ['env'],
+            plugins: ['transform-react-jsx'],
         }))
         .pipe(uglify())
         .pipe(gulp.dest(TMP + '/' + dir))
@@ -176,12 +177,14 @@ gulp.task('clean:tmp', function() {
 gulp.task('html:compile', ['html:copy'], function() {
     return compileJs('js/api', 'api', () => {
         return compileJs('js/api', 'dummy', () => {
-            for (let file of PAGES) {
-                console.log(file);
-                compileHtml('', file, [['css', file]], [['js', file]]);
-            }
+            return compileJs('js/jsx', 'react', () => {
+                for (let file of PAGES) {
+                    console.log(file);
+                    compileHtml('', file, [['css', file]], [['js', file]]);
+                }
 
-            return true;
+                return true;
+            });
         });
     });
 });

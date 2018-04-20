@@ -49,6 +49,7 @@
 		init.set("compensation", data.compensation);
 		init.set("deadline", "Dealine: " + data.deadline);
 		init.set("description", data.description);
+		init.set("location", data.location);
 		init.set("qualifications", data.qualifications);
 		init.set("how-to-apply", data.howToApply);
 		init.set("organization", data.organization);
