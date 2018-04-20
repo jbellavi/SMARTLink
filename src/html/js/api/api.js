@@ -11,6 +11,7 @@ let api = {
 	// the base URL to prepend to all API requests.
 	const BASE_URL = "localhost:8080";
 	const call = api.call;
+	const dummy = new DummyAPI();
 
 	// IIFE so we don't expose the post or get functions--we don't want them being
 	// called directly. Instead, they are used by the functions in api.call, which
@@ -177,6 +178,7 @@ let api = {
 	 *                 unsuccessfully
 	 */
 	call.getOpportunity = (uid, id, success, failure) => {
-		get("opportunity", {uid, id}, success, failure);
+		// get("opportunity", {uid, id}, success, failure);
+		dummy.success(success, dummy.getOpportunityRes());
 	};
 })();
