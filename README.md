@@ -7,7 +7,7 @@ To build the front end of the site, you will first need to [install `npm`](https
 Once you have `npm` installed, clone this directory and navigate into `/`. Run
 	`npm install`
 to set up all the packages used in this project. Then, if you do not already have [`gulp`](https://gulpjs.com/) installed, run
-	`npm install --save-dev gulp`
+	`npm install -g gulp`
 Now that you have all of the tools you need installed, you can simply run
 	`gulp`
 each time you would like to build the project.
