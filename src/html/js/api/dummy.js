@@ -69,7 +69,7 @@ class DummyAPI {
 	}
 
 	/**
-	 * Gets the saved respones for getArticle
+	 * Gets the saved respones for getArticles
 	 */
 	getArticlesRes() {
 		return [
@@ -100,6 +100,46 @@ class DummyAPI {
 				summary: 'I started painting as a hobby when I was little. I didn\'t know I had any talent. I believe talent is just a pursued interest. Anybody can do what I do. This painting comes right out of your heart.',
 				source: 'PR0HBTD',
 			},
+			{
+				id: '420',
+				image: '/asset/article-abc.jpg',
+				title: 'How to properly inhale IV',
+				author: 'Rotomoto',
+				date: '4/20/2018',
+				summary: 'I started painting as a hobby when I was little. I didn\'t know I had any talent. I believe talent is just a pursued interest. Anybody can do what I do. This painting comes right out of your heart.',
+				source: 'PR0HBTD',
+			},
+			{
+				id: '420',
+				image: '/asset/article-abc.jpg',
+				title: 'How to properly inhale V',
+				author: 'Rotomoto',
+				date: '4/20/2018',
+				summary: 'I started painting as a hobby when I was little. I didn\'t know I had any talent. I believe talent is just a pursued interest. Anybody can do what I do. This painting comes right out of your heart.',
+				source: 'PR0HBTD',
+			},
+			{
+				id: '420',
+				image: '/asset/article-abc.jpg',
+				title: 'How to properly inhale VI',
+				author: 'Rotomoto',
+				date: '4/20/2018',
+				summary: 'I started painting as a hobby when I was little. I didn\'t know I had any talent. I believe talent is just a pursued interest. Anybody can do what I do. This painting comes right out of your heart.',
+				source: 'PR0HBTD',
+			},
+		];
+	}
+
+	/**
+	 * Gets the saved responses for getSections
+	 */
+	getSectionsRes() {
+		return [
+			"How to Smoke",
+			"Decriminalization",
+			"History",
+			"Medicinal Uses",
+			"Recipes",
 		];
 	}
 
