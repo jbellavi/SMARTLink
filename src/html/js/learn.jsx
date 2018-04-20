@@ -44,7 +44,23 @@
 	 * Called when the job is found.
 	 */
 	init.success = (data) => {
+		let content = document.getElementById('content');
+
 		for (let section of data) {
+			let id = init.encodeName(section);
+
+			let url = "/learn-topic.html#" + id;
+			
+			content.appendChild(
+				<div id={id} class="section">
+					<div class="section-header">
+						<h2 class="header-text">{section}</h2>
+						<a href={url} class="header-link">See all&hellip;</a>
+					</div>
+				</div>
+			);
+
+			// callback for the contents of the section.
 			api.call.getArticles(section, (data) => {
 				init.sectionSuccess(data, section);
 			}, init.sectionFail);
@@ -55,7 +71,7 @@
 	 * Encodes a name in a consistent way.
 	 */
 	init.encodeName = (raw) => {
-		return raw.split('\W').join('').split('\s+').join('-').toLowerCase();
+		return raw.split('\W').join('').split(' ').join('-').toLowerCase();
 	}
 
 	/**
@@ -74,12 +90,10 @@
 	 * @param sectionName  the name of the section
 	 */
 	init.sectionSuccess = (articles, sectionName) => {
-		let content = document.getElementById('content');
+		let sectionNode = document.getElementById(init.encodeName(sectionName));
 
 		let sectionBody = <div class="section-body"></div>;
 		let sections = Math.min(articles.length, 4);
-
-		let url = "/learn-topic.html#" + init.encodeName(sectionName);
 
 		// make the primary
 		// trip to 4 items
@@ -93,15 +107,7 @@
 			sectionBody.appendChild(init.smallArticle(articles[i]));
 		}
 
-		content.appendChild(
-			<div class="section">
-				<div class="section-header">
-					<h2 class="header-text">{sectionName}</h2>
-					<a href={url} class="header-link">See all&hellip;</a>
-				</div>
-				{sectionBody}
-			</div>
-		);
+		sectionNode.appendChild(sectionBody);
 	};
 
 	/**
