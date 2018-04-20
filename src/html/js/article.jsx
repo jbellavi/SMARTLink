@@ -19,8 +19,7 @@
 		// TODO: get the uid from somewhere
 		let uid = 0;
 
-		api.call.getOpportunity(uid, id, init.success, init.failure)
-		
+		api.call.getArticle(id, init.success, init.failure);
 	};
 
 	/**
@@ -42,21 +41,35 @@
 
 	/**
 	 * Called when the article is found.
+	 *
+	 * @param data  the data returned by the API.
 	 */
 	init.success = (data) => {
-		//title
-		// author
-		// date
-		// content
-		// via
+		init.set("title", data.title);
+		init.set("author", "by " + data.author);
+		init.set("date", data.date);
+		init.content(data.content);
 	};
 
 	/**
-	 * Called when the job is not found.
+	 * Generates the article content HTML.
+	 *
+	 * @param content
+	 */
+	init.content = (content) => {
+		let node = document.getElementById('article-body');
+
+		for (let paragraph of content.split('\n')) {
+			node.appendChild(<p class="paragraph">{paragraph}</p>);
+		}
+	};
+
+	/**
+	 * Called when the article is not found.
 	 */
 	init.failure = () => {
 		// TODO: 
-	}
+	};
 
 	// set everything in motion.
 	init.go();

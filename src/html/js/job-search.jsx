@@ -61,7 +61,7 @@
 		                <a href={job.link} class="apply">Apply</a>
 		            </div>
 		        </div>
-			)
+			);
 		}
 	};
 
