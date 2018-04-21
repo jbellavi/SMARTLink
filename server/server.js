@@ -122,15 +122,30 @@ app.get('/connect', function(request, response) {
 	});
 });
 
-//GET opportunities given a user
+//GET opportunities given an organization
 app.get('/connect/:organization_name', function(request, response) {
 	console.log("GET ALL OPPORTUNITIES FOR A GIVEN ORGANIZATION")
 	const params = request.body;
 	const opportunitiesQuery = 'SELECT * FROM opportunities WHERE organization_name IS $1';
-	connPool.query(opportunitiesQuery, [params.org_name], function (error, data) {
+	connPool.query(opportunitiesQuery, [params.organization_name], function (error, data) {
 		if (error) {
 			response.send( {success: false, data: []})
 		}
+		response.send({success: true, data: data.rows});
+	});
+});
+
+//GET opportunity given id
+app.get('/connect/opportunities/:id', function (request, response) {
+	console.log("GET AN OPPORTUNITY GIVEN AN ID");
+	const params = request.body;
+	const opportunityQuery = 'SELECT * FROM opportunities WHERE id == $1';
+
+	connPool.query(opportunityQuery, [params.id], function (request, response) {
+		if (error) {
+			response.send( {success: false, data: []});
+		}
+
 		response.send({success: true, data: data.rows});
 	});
 });
