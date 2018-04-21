@@ -16,11 +16,11 @@ Article:
 	id STRING
 	isApproved BOOLEAN
 	title STRING
-	user_id Foreign Key : default ""
+	user_id 
 	submit_date DATE
 	description STRING
 	content STRING
-	section Foreign Key : default ""
+	section 
 
 Opportunity:
 	isApproved
@@ -61,7 +61,10 @@ LEARN PAGE
 app.get('/learn/sections', function (request, response) {
 	const sectionQuery = 'SELECT DISTINCT section FROM sections';
 	const allSections = connPool.query(sectionQuery, function(error, data) {
-		response.send(data.rows);
+		if (error) {
+			response.send( {success: false, data: []})
+		}
+		response.send({success: true, data: data.rows});
 	});
 });
 
@@ -69,17 +72,49 @@ app.get('/learn/sections', function (request, response) {
 app.get('/learn/sections/:section', function (request, response) {
 	const sectionArticles = 'SELECT * FROM articles WHERE section IS $1';
 	connPool.query(sectionArticles, [request.body.section], function (error, data) {
-		response.send(data.rows);
+		if (error) {
+			response.send( {success: false, data: []})
+		}
+		response.send({success: true, data: data.rows});
 	})
-})
+});
 
 //GET ARTICLE GIVEN ARTICLE ID
 app.get('/learn/:articleid', function (request, response) {
 	const articleQuery = 'SELECT * FROM artciles WHERE id = $1';
 	connPool.query(articleQuery, [request.body.articleid], function (error, data) {
-		response.send(data.rows);
+		if (error) {
+			response.send( {success: false, data: []})
+		}
+		response.send({success: true, data: data.rows});
 	})
-})
+});
+
+//POST ARTICLE
+app.post('/learn/article', function (request, response) {
+	const params = request.body;
+});
+
+
+
+/* 
+
+Connect Page
+
+
+*/
+
+//GET opportunities given a user
+app.get('/connect/:org_name', function(request, response) {
+	const params = request.body;
+	const opportunitiesQuery = 'SELECT * FROM opportunities WHERE organization_name IS $1';
+	connPool.query(opportunitiesQuery, [params.org_name], function (error, data) {
+		if (error) {
+			response.send( {success: false, data: []})
+		}
+		response.send({success: true, data: data.rows});
+	});
+});
 
 
 
