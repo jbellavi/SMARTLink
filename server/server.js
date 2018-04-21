@@ -49,7 +49,6 @@ connPool.query('CREATE TABLE IF NOT EXISTS users(id STRING, username TEXT, email
 connPool.query('CREATE TABLE IF NOT EXISTS articles(id INTEGER PRIMARY KEY AUTOINCREMENT, isApproved BOOLEAN, title TEXT, content TEXT, url TEXT, submitted DATETIME, section TEXT, user_id TEXT, image_url TEXT, source TEXT)');
 connPool.query('CREATE TABLE IF NOT EXISTS opportunities(id INTEGER PRIMARY KEY AUTOINCREMENT, isApproved BOOLEAN, title TEXT, organization_name TEXT, deadline DATETIME, description TEXT, qualifications TEXT, commitment TEXT, how_to_apply TEXT, about TEXT, url TEXT, position TEXT)');
 
-//=== GET METHODS ====//
 
 /** 
 
@@ -57,8 +56,11 @@ LEARN PAGE
 
 **/
 
+// LEARN PAGE GET METHODS //
+
 //GET ALL SECTIONS
 app.get('/learn/sections', function (request, response) {
+	console.log("GET ALL SECTIONS REQUEST");
 	const sectionQuery = 'SELECT DISTINCT section FROM sections';
 	const allSections = connPool.query(sectionQuery, function(error, data) {
 		if (error) {
@@ -70,6 +72,7 @@ app.get('/learn/sections', function (request, response) {
 
 //GET ALL ARTICLES GIVEN A SECTION
 app.get('/learn/sections/:section', function (request, response) {
+	console.log("GET ALL ARTICLES FOR A GIVEN SECTION");
 	const sectionArticles = 'SELECT * FROM articles WHERE section IS $1';
 	connPool.query(sectionArticles, [request.body.section], function (error, data) {
 		if (error) {
@@ -81,6 +84,7 @@ app.get('/learn/sections/:section', function (request, response) {
 
 //GET ARTICLE GIVEN ARTICLE ID
 app.get('/learn/:articleid', function (request, response) {
+	console.log("GET AN ARTICLE GIVEN AN ARTICLE ID");
 	const articleQuery = 'SELECT * FROM artciles WHERE id = $1';
 	connPool.query(articleQuery, [request.body.articleid], function (error, data) {
 		if (error) {
@@ -89,6 +93,8 @@ app.get('/learn/:articleid', function (request, response) {
 		response.send({success: true, data: data.rows});
 	})
 });
+
+// LEARN PAGE POST METHODSS //
 
 //POST ARTICLE
 app.post('/learn/article', function (request, response) {
@@ -104,8 +110,21 @@ Connect Page
 
 */
 
+//GET all opportunities
+app.get('/connect', function(request, response) {
+	const opportunitiesQuery = 'SELECT * FROM opportunities';
+	connPool.query(opportunitiesQuery, function (error, data) {
+		if (error) {
+			response.send({success: false, data: []});
+		} 
+
+		response.send({success: true, data: data.rows});
+	});
+});
+
 //GET opportunities given a user
-app.get('/connect/:org_name', function(request, response) {
+app.get('/connect/:organization_name', function(request, response) {
+	console.log("GET ALL OPPORTUNITIES FOR A GIVEN ORGANIZATION")
 	const params = request.body;
 	const opportunitiesQuery = 'SELECT * FROM opportunities WHERE organization_name IS $1';
 	connPool.query(opportunitiesQuery, [params.org_name], function (error, data) {
@@ -117,13 +136,6 @@ app.get('/connect/:org_name', function(request, response) {
 });
 
 
-
-
-
-
-
-
-//=== POST METHODS ===//
 
 
 
