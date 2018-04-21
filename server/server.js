@@ -96,10 +96,20 @@ app.get('/learn/:articleid', function (request, response) {
 
 // LEARN PAGE POST METHODSS //
 
-//POST ARTICLE
+//POST ARTICLE FROM FORM
 app.post('/learn/article', function (request, response) {
+	console.log("POST ARTICLE TO DB");
 	const params = request.body;
+	const postArticleQuery = 'INSERT INTO articles VALUES($1, $2, $3, $4, $5, $6, $7, $8, $9)';
+	connPool.query(postArticleQuery, [null, false, params.title, params.content, params.url, params.submitted, params.section,, params.user_id, params.image_url, params.source], function (error, data) {
+		if (error) {
+			response.send( {success: false});
+		} 
+			response.send({success: true});
+	});
 });
+
+
 
 
 
@@ -149,6 +159,8 @@ app.get('/connect/opportunities/:id', function (request, response) {
 		response.send({success: true, data: data.rows});
 	});
 });
+
+//Post Methods
 
 
 
