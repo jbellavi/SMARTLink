@@ -188,7 +188,7 @@ let api = {
 	 */
 	call.getOpportunity = (uid, id, success, failure) => {
 		// get("opportunity", {uid, id}, success, failure);
-		// dummy.success(success, dummy.getOpportunityRes());
-		dummy.success(failure, {});
+		dummy.success(success, dummy.getOpportunityRes());
+		// dummy.success(failure, {});
 	};
 })();
