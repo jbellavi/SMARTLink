@@ -70,10 +70,10 @@
 		node.appendChild(
 			<div class="simple">
 				<div class="title">
-					Job not found.
+					Opportunity not found.
 				</div>
 				<div class="text">
-					We're having trouble finding this job. If you're at the right URL, this opportunity may no longer be available.
+					We're having trouble finding this opportunity. If you're at the right URL, this opportunity may no longer be available.
 				</div>
 			</div>
 		);
