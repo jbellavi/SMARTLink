@@ -46,6 +46,12 @@
 	init.success = (jobs) => {
 		let results = document.getElementById('results');
 
+		if (jobs.length === 0) {
+			// no results found.
+			init.failure();
+			return;
+		}
+
 		for (let job of jobs) {
 			let url = "job-result.html#" + job.id;
 
@@ -70,6 +76,15 @@
 	 */
 	init.failure = () => {
 		// TODO: 
+		let node = document.getElementById('results');
+
+		results.appendChild(
+			<div class="simple">
+				<div class="no-results">
+					No results found.
+				</div>
+			</div>
+		);
 	};
 
 	// set everything in motion.
