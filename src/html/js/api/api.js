@@ -153,7 +153,8 @@ let api = {
 	 */
 	call.getArticle = (id, success, failure) => {
 		// get("article", {id}, success, failure);
-		dummy.success(success, dummy.getArticleRes());
+		// dummy.success(success, dummy.getArticleRes());
+		dummy.success(failure, {});
 	};
 
 	/**
