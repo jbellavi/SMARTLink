@@ -63,7 +63,9 @@
 			// callback for the contents of the section.
 			api.call.getArticles(section, (data) => {
 				init.sectionSuccess(data, section);
-			}, init.sectionFail);
+			}, (err) => {
+				init.sectionFailure(err, section);
+			});
 		}
 	};
 
@@ -108,6 +110,21 @@
 		}
 
 		sectionNode.appendChild(sectionBody);
+	};
+
+	/**
+	 * Called when a section fails to load.
+	 */
+	init.sectionFailure = (err, sectionName) => {
+		let sectionNode = document.getElementById(init.encodeName(sectionName));
+
+		sectionNode.appendChild(
+			<div class="simple">
+				<div class="text">
+					This section could not be found.
+				</div>
+			</div>
+		);
 	};
 
 	/**
@@ -156,13 +173,6 @@
 	 */
 	init.failure = () => {
 		// TODO: 
-	};
-
-	/**
-	 * Called when a section fails to load.
-	 */
-	init.sectionFailure = () => {
-
 	};
 
 	// set everything in motion.
