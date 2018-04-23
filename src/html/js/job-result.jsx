@@ -19,7 +19,7 @@
 		// TODO: get the uid from somewhere
 		let uid = 0;
 
-		api.call.getOpportunity(uid, id, init.success, init.failure)
+		api.call.getOpportunity(uid, id, init.success, init.failure);
 		
 	};
 
@@ -61,7 +61,22 @@
 	 * Called when the job is not found.
 	 */
 	init.failure = () => {
-		// TODO: 
+		let node = document.getElementById('content');
+
+		while (node.hasChildNodes()) {
+		    node.removeChild(node.lastChild);
+		}
+
+		node.appendChild(
+			<div class="simple">
+				<div class="title">
+					Job not found.
+				</div>
+				<div class="text">
+					We're having trouble finding this job. If you're at the right URL, this opportunity may no longer be available.
+				</div>
+			</div>
+		);
 	}
 
 	// set everything in motion.

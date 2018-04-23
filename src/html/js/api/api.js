@@ -125,8 +125,8 @@ let api = {
 	 */
 	call.getSections = (success, failure) => {
 		// get("section", {section}, success, failure);
-		// dummy.success(success, dummy.getSectionsRes());
-		dummy.success(failure, {});
+		dummy.success(success, dummy.getSectionsRes());
+		// dummy.success(failure, {});
 	};
 
 	/**
@@ -140,8 +140,8 @@ let api = {
 	 */
 	call.getArticles = (section, success, failure) => {
 		// get("section", {section}, success, failure);
-		// dummy.success(success, dummy.getArticlesRes());
-		dummy.success(failure, {});
+		dummy.success(success, dummy.getArticlesRes());
+		// dummy.success(failure, {});
 	};
 
 	/**
@@ -155,8 +155,8 @@ let api = {
 	 */
 	call.getArticle = (id, success, failure) => {
 		// get("article", {id}, success, failure);
-		// dummy.success(success, dummy.getArticleRes());
-		dummy.success(failure, {});
+		dummy.success(success, dummy.getArticleRes());
+		// dummy.success(failure, {});
 	};
 
 	/**
@@ -171,9 +171,9 @@ let api = {
 	 */
 	call.getOpportunities = (uid, query, success, failure) => {
 		// get("opportunities", {uid, query}, success, failure);
-		// dummy.success(success, dummy.getOpportunitiesRes());
+		dummy.success(success, dummy.getOpportunitiesRes());
 		// dummy.success(failure, {});
-		dummy.success(success, []);
+		// dummy.success(success, []);
 	};
 
 	/**
@@ -188,6 +188,7 @@ let api = {
 	 */
 	call.getOpportunity = (uid, id, success, failure) => {
 		// get("opportunity", {uid, id}, success, failure);
-		dummy.success(success, dummy.getOpportunityRes());
+		// dummy.success(success, dummy.getOpportunityRes());
+		dummy.success(failure, {});
 	};
 })();
