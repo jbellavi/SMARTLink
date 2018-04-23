@@ -84,7 +84,16 @@
 	 * Called when the section is not found.
 	 */
 	init.failure = () => {
-		// TODO: 
+		// TODO:
+		let content = document.getElementById('main-content');
+
+		content.appendChild(
+			<div class="simple">
+				<div class="text">
+					We're having trouble finding this lesson. Please make sure that you have the correct url.
+				</div>
+			</div>
+		);
 	};
 
 	// set everything in motion.

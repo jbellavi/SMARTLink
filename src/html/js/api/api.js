@@ -15,7 +15,7 @@ let api = {
 
 	// IIFE so we don't expose the post or get functions--we don't want them being
 	// called directly. Instead, they are used by the functions in api.call, which
-	// are all just proxies for post and get. the api.call function ensure that the
+	// are all just proxies for post and get. The api.call function ensure that the
 	// correct arguments are being passed to the correct endpoints using the correct
 	// methods (POST/GET/etc.).
 
@@ -139,7 +139,8 @@ let api = {
 	 */
 	call.getArticles = (section, success, failure) => {
 		// get("section", {section}, success, failure);
-		dummy.success(success, dummy.getArticlesRes());
+		// dummy.success(success, dummy.getArticlesRes());
+		dummy.success(failure, {});
 	};
 
 	/**
