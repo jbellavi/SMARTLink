@@ -172,7 +172,18 @@
 	 * Called when the job is not found.
 	 */
 	init.failure = () => {
-		// TODO: 
+		let content = document.getElementById('content');
+
+		content.appendChild(
+			<div class="simple">
+				<div class="title">
+					Lessons not found.
+				</div>
+				<div class="text">
+					Please bear with us. We seem to be having some technical issues. We are working on getting back on line as fast as we can.
+				</div>
+			</div>
+		);
 	};
 
 	// set everything in motion.

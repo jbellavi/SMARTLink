@@ -125,7 +125,8 @@ let api = {
 	 */
 	call.getSections = (success, failure) => {
 		// get("section", {section}, success, failure);
-		dummy.success(success, dummy.getSectionsRes());
+		// dummy.success(success, dummy.getSectionsRes());
+		dummy.success(failure, {});
 	};
 
 	/**
