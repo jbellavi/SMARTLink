@@ -126,3 +126,52 @@
 	margin: 0px 10px;
 	cursor: pointer;
 }
+
+.lce-nav {
+	position: fixed;
+	top: 0;
+	left: 0;
+	display: flex;
+	flex-direction: column;
+	padding: 0;
+	height: 100%;
+	width: 300px;
+	z-index: 3;
+	padding: 3px;
+	background-color: @color-white;
+	border-right: @header-border;
+}
+
+.lce-nav-button(@image-source) {
+	display: flex;
+	flex-direction: row;
+	flex-grow: 1;
+	flex-basis: 25%;
+	width: 100%;
+	align-items: center;
+	justify-content: center;
+
+
+	font-family: @font-family-lce-button;
+	font-weight: 500;
+	font-style: italic;
+	font-size: 30px;
+	text-transform: uppercase;
+	color: @color-text-white;
+
+	background-image: url("/asset/@{image-source}.jpg");
+	background-size: cover;
+}
+
+.learn-nav-button {
+	.lce-nav-button(learn);
+}
+
+.connect-nav-button {
+	.lce-nav-button(connect);
+	margin: 3px 0px;
+}
+
+.explore-nav-button {
+	.lce-nav-button(explore);
+}
