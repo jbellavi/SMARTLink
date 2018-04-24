@@ -26,7 +26,6 @@ const PAGES = [
     "calendar",
     "disclaimer",
     "index",
-    "job-list",
     "job-search",
     "job-result",
     "login",
