@@ -179,12 +179,14 @@ gulp.task('html:compile', ['html:copy'], function() {
     return compileJs('js/api', 'api', () => {
         return compileJs('js/api', 'dummy', () => {
             return compileJs('js/jsx', 'react', () => {
-                for (let file of PAGES) {
-                    console.log(file);
-                    compileHtml('', file, [['css', file]], [['js', file]]);
-                }
+                return compileJs('js/common', 'common', () => {
+                    for (let file of PAGES) {
+                        console.log(file);
+                        compileHtml('', file, [['css', file]], [['js', file]]);
+                    }
 
-                return true;
+                    return true;
+                });
             });
         });
     });
