@@ -76,3 +76,59 @@
 	font-family: @font-family-main;
 	font-size: 20px;
 }
+
+.event {
+	.bubble();
+	display: flex;
+	flex-direction: row;
+	width: 100%;
+	margin-top: 20px;
+}
+
+.event:last-child {
+	margin-bottom: 20px;
+}
+
+.event-left {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	border-right: 1px solid @color-grey;
+	padding-right: 10px;
+	margin-right: 10px;
+}
+
+.event-month {
+	font-size: 14px;
+	text-transform: uppercase;
+}
+
+.event-date {
+	font-size: 24px;
+	margin-top: 7px;
+}
+
+.event-title {
+	.bubble-title();
+}
+
+.event-title:hover {
+	text-decoration: underline;
+}
+
+.event-right-row {
+	display: block;
+	font-size: 14px;
+	margin-top: 8px;
+	color: @color-grey;
+}
+
+.event-question {
+	display: inline;
+	text-transform: uppercase;
+	margin-right: 2px;
+}
+
+.event-answer {
+	display: inline;
+}

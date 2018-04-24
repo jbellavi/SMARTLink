@@ -63,6 +63,15 @@
     background-color: #f6f6f6;
     border-radius: 2px;
     padding: 20px;
+    flex-shrink: 0;
+    font-family: @font-family-main;
+}
+
+.bubble-title() {
+    font-family: @font-family-title;
+    font-weight: 500;
+    font-size: 16px;
+    margin-bottom: 6px;
 }
 
 .job {
@@ -71,7 +80,6 @@
     flex-direction: column;
     width: 100%;
     margin-top: 20px;
-    flex-shrink: 0;
 }
 
 .job:last-child {
@@ -79,10 +87,7 @@
 }
 
 .job-title {
-    font-family: @font-family-title;
-    font-weight: 500;
-    font-size: 16px;
-    margin-bottom: 6px;
+    .bubble-title();
 }
 
 .job-description {
