@@ -201,6 +201,15 @@ class DummyAPI {
 	}
 
 	/**
+	 * Gets the saved post opportunities respose.
+	 */
+	postOpportunityRes() {
+		return {
+			id: 420,
+		}
+	}
+
+	/**
 	 * Calls the callback with the given data after a short delay.
 	 *
 	 * @param callback  the callback function

@@ -137,7 +137,7 @@ let compileJs = (dir, file, cb) => {
             presets: ['env'],
             plugins: ['transform-react-jsx'],
         }))
-        .pipe(uglify())
+        // .pipe(uglify())
         .pipe(gulp.dest(TMP + '/' + dir))
         .on('end', cb);
 }

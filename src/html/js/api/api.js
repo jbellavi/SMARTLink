@@ -123,10 +123,11 @@ let api = {
 	 *                        of missing fields in the case of an error
 	 */
 	let require = (data, mandatoryFields) => {
-		missing = [];
+		let missing = [];
 
 		for (let field of mandatoryFields) {
-			if (typeof data[field] === 'undefined') {
+			if (typeof data[field] === 'undefined'
+				|| data[field] === '') {
 				missing.push(field);
 			}
 		}
@@ -247,9 +248,15 @@ let api = {
 	/**
 	 * Creates a new opportunity.
 	 *
-	 * @param uid   the id of the user making the request
+	 * @param uid      the id of the user making the request
+	 * @param data     the data to send to the endpoint
+	 * @param success  the function to call when the API call returns
+	 *                 successfully
+	 * @param failure  the function to call when the API call returns
+	 *                 unsuccessfully, or if the data are malformed
+	 *                 and are not sent to the server
 	 */
-	call.createOpportunity = (uid, data, success, failure) => {
+	call.postOpportunity = (uid, data, success, failure) => {
 		const MANDATORY = [
 			'about',
 			'commitment',
@@ -258,7 +265,7 @@ let api = {
 			'description',
 			'location',
 			'qualifications',
-			'howToApply',
+			'how',
 			'organization',
 			'title',
 			'link',
@@ -266,10 +273,11 @@ let api = {
 
 		data.uid = uid;
 
-		let missing =  require(data, MANDATORy);
+		let missing = require(data, MANDATORY);
 
 		if (typeof missing === 'undefined') {
-			post("opportunity", data, success, failure);
+			// get("opportunity", data, success, failure);
+			dummy.success(success, dummy.postOpportunityRes());
 		} else {
 			failure({missing});
 		}
