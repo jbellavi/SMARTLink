@@ -81,6 +81,21 @@ class DummyAPI {
 	}
 
 	/**
+	 *
+	 */
+	getPersonRes() {
+		return {
+			name: "Nadir Pearson",
+			title: "Founder",
+			organization: "Student Marijuana Alliance for Research and Transparency",
+			location: "Providence, RI",
+			id: '420',
+			email: "nadir_pearson@brown.edu",
+			biography: "I started painting as a hobby when I was little. I didn\'t know I had any talent. I believe talent is just a pursued interest. Anybody can do what I do. This painting comes right out of your heart. That\'s why I paint - because I can create the kind of world I want - and I can make this world as happy as I want it. I want everbody to be happy. That\'s what it\'s all about. How do you make a round circle with a square knife? That\'s your challenge for the day. Let\'s have a nice tree right here.",
+		}
+	}
+
+	/**
 	 * Gets the saved respones for getArticles
 	 */
 	getArticlesRes() {

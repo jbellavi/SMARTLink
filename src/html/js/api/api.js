@@ -207,4 +207,20 @@ let api = {
 		dummy.success(success, dummy.getOpportunityRes());
 		// dummy.success(failure, {});
 	};
+
+	/**
+	 * Gets all the data for a single person page.
+	 *
+	 * @param uid      the id of the user making the request
+	 * @param id       the id of the person being fetched
+	 * @param success  the function to call when the API call returns
+	 *                 successfully
+	 * @param failure  the function to call when the API call returns
+	 *                 unsuccessfully
+	 */
+	call.getPerson = (uid, id, success, failure) => {
+		// get("person", {uid, id}, success, failure);
+		dummy.success(success, dummy.getPersonRes());
+		// dummy.success(failure, {});
+	};
 })();

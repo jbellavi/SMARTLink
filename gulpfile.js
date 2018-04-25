@@ -28,6 +28,7 @@ const PAGES = [
     "index",
     "job-search",
     "job-result",
+    "person-result",
     "login",
     "new-post",
     "learn",
