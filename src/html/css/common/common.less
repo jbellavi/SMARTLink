@@ -38,11 +38,7 @@
 .header-top-left {
 	display: flex;
 	flex-direction: row;
-	justify-content: center;
-}
-
-.smart-logo-header {
-	padding-left: 20px;
+	align-items: center;
 }
 
 .smart-logo {
@@ -70,7 +66,6 @@
 .footer {
 	.footer-row();
 	justify-content: space-between;
-	height: 40px;
 }
 
 .content {
@@ -80,10 +75,16 @@
 	flex-grow: 1;
 }
 
-.footer-left {
-	width: 33.3%;
+.footer-piece() {
+	flex-basis: 33.3%;
+	flex-grow: 1;
 	display: flex;
 	flex-direction: row;
+	margin: 4px 0px;
+}
+
+.footer-left {
+	.footer-piece();
 	margin-left: 30px;
 	font-family: @font-family-footer;
 }
@@ -93,18 +94,20 @@
 }
 
 .footer-right {
-	width: 33.3%;
+	.footer-piece();
 	margin-right: 20px;
-	display: flex;
-	flex-direction: row;
 	justify-content: flex-end;
 }
 
 .footer-center {
-	width: 33.3%;
-	display: flex;
-	flex-direction: row;
+	.footer-piece();
 	justify-content: center;
+}
+
+@media screen and (max-width: 840px) {
+	.footer {
+		flex-direction: column;
+	}
 }
 
 .copyright {
@@ -117,8 +120,80 @@
 }
 
 .social-media-icon {
-	height: 30px;
-	width: 30px;
-	margin: 0px 5px;
+	height: 15px;
+	width: 15px;
+	margin: 0px 3px;
 	opacity: 0.5;
+}
+
+.hamburger {
+	height: 50px;
+	width: 50px;
+	padding: 10px;
+	margin: 0px 10px;
+	cursor: pointer;
+}
+
+.lce-nav {
+	position: fixed;
+	top: 0;
+	left: -300px;
+	display: flex;
+	flex-direction: column;
+	padding: 0;
+	height: 100%;
+	width: 300px;
+	z-index: 3;
+	padding: 3px;
+	background-color: @color-white;
+	border-right: @header-border;
+	transition: left @curve-sharp;
+}
+
+.lce-nav.visible {
+	transition: left @curve-acceleration;
+	left: 0;
+}
+
+.nav-close {
+	width: 100%;
+	margin-bottom: 3px;
+	align-self: flex-end;
+	height: 40px;
+	width: 40px;
+	cursor: pointer;
+}
+
+.lce-nav-button(@image-source) {
+	display: flex;
+	flex-direction: row;
+	flex-grow: 1;
+	flex-basis: 25%;
+	width: 100%;
+	align-items: center;
+	justify-content: center;
+
+
+	font-family: @font-family-lce-button;
+	font-weight: 500;
+	font-style: italic;
+	font-size: 30px;
+	text-transform: uppercase;
+	color: @color-text-white;
+
+	background-image: url("/asset/@{image-source}.jpg");
+	background-size: cover;
+}
+
+.learn-nav-button {
+	.lce-nav-button(learn);
+}
+
+.connect-nav-button {
+	.lce-nav-button(connect);
+	margin: 3px 0px;
+}
+
+.explore-nav-button {
+	.lce-nav-button(explore);
 }

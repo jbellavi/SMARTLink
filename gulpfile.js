@@ -23,11 +23,13 @@ var BUILD = './com' + HTML_ROOT;
 
 const PAGES = [
     "connect",
+    "create-opportunity",
+    "calendar",
     "disclaimer",
     "index",
-    "job-list",
     "job-search",
     "job-result",
+    "person-result",
     "login",
     "new-post",
     "learn",
@@ -135,7 +137,7 @@ let compileJs = (dir, file, cb) => {
             presets: ['env'],
             plugins: ['transform-react-jsx'],
         }))
-        .pipe(uglify())
+        // .pipe(uglify())
         .pipe(gulp.dest(TMP + '/' + dir))
         .on('end', cb);
 }
@@ -179,12 +181,14 @@ gulp.task('html:compile', ['html:copy'], function() {
     return compileJs('js/api', 'api', () => {
         return compileJs('js/api', 'dummy', () => {
             return compileJs('js/jsx', 'react', () => {
-                for (let file of PAGES) {
-                    console.log(file);
-                    compileHtml('', file, [['css', file]], [['js', file]]);
-                }
+                return compileJs('js/common', 'common', () => {
+                    for (let file of PAGES) {
+                        console.log(file);
+                        compileHtml('', file, [['css', file]], [['js', file]]);
+                    }
 
-                return true;
+                    return true;
+                });
             });
         });
     });

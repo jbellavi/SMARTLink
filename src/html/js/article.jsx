@@ -46,7 +46,7 @@
 	 */
 	init.success = (data) => {
 		init.set("title", data.title);
-		init.set("author", "by " + data.author);
+		init.set("author", typeof data.author === 'undefined' ? "" : "by " + data.author);
 		init.set("date", data.date);
 
 		let img = 'url("' + data.image + '")';
@@ -72,7 +72,13 @@
 	 * Called when the article is not found.
 	 */
 	init.failure = () => {
-		// TODO: 
+		// TODO:
+		init.success({
+			title: "Article not found",
+			image: "/asset/article-not-found.jpg",
+			date: "",
+			content: "Please make sure you have the correct url.",
+		});
 	};
 
 	// set everything in motion.

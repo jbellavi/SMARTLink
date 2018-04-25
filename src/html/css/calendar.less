@@ -1,0 +1,50 @@
+@import "common/common";
+@import "common/simple";
+
+.wrapper {
+    flex-grow: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    background-color: @color-login-dialogue-outer;
+}
+
+.intro-row {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+.intro {
+    display: inline;
+    font-family: @font-family-title;
+    font-size: 25px;
+    font-weight: 500;
+}
+
+.dialogue {
+    padding: 40px;
+    background-color: @color-login-dialogue-inner;
+    border-radius: 2px;
+}
+
+.calendar {
+    background-color: #eee;
+    height: 600px;
+    width: 800px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.city-select {
+    display: inline;
+    margin-left: auto;
+    border: none;
+    font-family: @font-family-main;
+    font-size: 20px;
+    text-align: right;
+    cursor: pointer;
+}

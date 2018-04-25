@@ -63,7 +63,9 @@
 			// callback for the contents of the section.
 			api.call.getArticles(section, (data) => {
 				init.sectionSuccess(data, section);
-			}, init.sectionFail);
+			}, (err) => {
+				init.sectionFailure(err, section);
+			});
 		}
 	};
 
@@ -111,6 +113,21 @@
 	};
 
 	/**
+	 * Called when a section fails to load.
+	 */
+	init.sectionFailure = (err, sectionName) => {
+		let sectionNode = document.getElementById(init.encodeName(sectionName));
+
+		sectionNode.appendChild(
+			<div class="simple">
+				<div class="text">
+					This section could not be found.
+				</div>
+			</div>
+		);
+	};
+
+	/**
 	 * Initializes a large article.
 	 *
 	 * @param article  the article to render 
@@ -155,14 +172,18 @@
 	 * Called when the job is not found.
 	 */
 	init.failure = () => {
-		// TODO: 
-	};
+		let content = document.getElementById('content');
 
-	/**
-	 * Called when a section fails to load.
-	 */
-	init.sectionFailure = () => {
-
+		content.appendChild(
+			<div class="simple">
+				<div class="title">
+					Lessons not found.
+				</div>
+				<div class="text">
+					Please bear with us. We seem to be having some technical issues. We are working on getting back on line as fast as we can.
+				</div>
+			</div>
+		);
 	};
 
 	// set everything in motion.

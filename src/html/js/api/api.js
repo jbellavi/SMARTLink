@@ -15,7 +15,7 @@ let api = {
 
 	// IIFE so we don't expose the post or get functions--we don't want them being
 	// called directly. Instead, they are used by the functions in api.call, which
-	// are all just proxies for post and get. the api.call function ensure that the
+	// are all just proxies for post and get. The api.call function ensure that the
 	// correct arguments are being passed to the correct endpoints using the correct
 	// methods (POST/GET/etc.).
 
@@ -114,6 +114,27 @@ let api = {
 		req.send();
 	}
 
+	/**
+	 * Returns an error if any fields are missing.
+	 *
+	 * @param data            the data to verify
+	 * @param mandatorFields  the fields which must exist to avoid returning an error
+	 * @return                undefined if all required fields exist, or a list
+	 *                        of missing fields in the case of an error
+	 */
+	let require = (data, mandatoryFields) => {
+		let missing = [];
+
+		for (let field of mandatoryFields) {
+			if (typeof data[field] === 'undefined'
+				|| data[field] === '') {
+				missing.push(field);
+			}
+		}
+
+		return missing.length === 0 ? undefined : missing;
+	};
+
 
 	/**
 	 * GETs a list of all sections on the LEARN page.
@@ -126,6 +147,7 @@ let api = {
 	call.getSections = (success, failure) => {
 		// get("section", {section}, success, failure);
 		dummy.success(success, dummy.getSectionsRes());
+		// dummy.success(failure, {});
 	};
 
 	/**
@@ -140,6 +162,7 @@ let api = {
 	call.getArticles = (section, success, failure) => {
 		// get("section", {section}, success, failure);
 		dummy.success(success, dummy.getArticlesRes());
+		// dummy.success(failure, {});
 	};
 
 	/**
@@ -154,21 +177,40 @@ let api = {
 	call.getArticle = (id, success, failure) => {
 		// get("article", {id}, success, failure);
 		dummy.success(success, dummy.getArticleRes());
+		// dummy.success(failure, {});
+	};
+
+	/**
+	 * GETs the list of available regional google calendars.
+	 *
+	 * @param uid      the id of the user making the request
+	 * @param success  the function to call when the API call returns
+	 *                 successfully
+	 * @param failure  the funcction to call when the API call returns
+	 *                 unsuccesfully
+	 */
+	call.getCalendars = (uid, success, failure) => {
+		// get("calendars", success, failure);
+		dummy.success(success, dummy.getCalendarsRes());
+		// dummy.success(failure, []);
 	};
 
 	/**
 	 * Gets search results for a search on the connect page.
 	 *
-	 * @param uid      the id of the userma king the search
+	 * @param uid      the id of the user making the search
 	 * @param query    the search query
+	 * @param filters  the filters to apply to the query
 	 * @param success  the function to call when the API call returns
 	 *                 successfully
 	 * @param failure  the function to call when the API call returns
 	 *                 unsuccessfully
 	 */
-	call.getOpportunities = (uid, query, success, failure) => {
-		// get("opportunities", {uid, query}, success, failure);
+	call.getOpportunities = (uid, query, filters, success, failure) => {
+		// get("opportunities", {uid, query, filters}, success, failure);
 		dummy.success(success, dummy.getOpportunitiesRes());
+		// dummy.success(failure, {});
+		// dummy.success(success, []);
 	};
 
 	/**
@@ -184,5 +226,60 @@ let api = {
 	call.getOpportunity = (uid, id, success, failure) => {
 		// get("opportunity", {uid, id}, success, failure);
 		dummy.success(success, dummy.getOpportunityRes());
+		// dummy.success(failure, {});
 	};
+
+	/**
+	 * Gets all the data for a single person page.
+	 *
+	 * @param uid      the id of the user making the request
+	 * @param id       the id of the person being fetched
+	 * @param success  the function to call when the API call returns
+	 *                 successfully
+	 * @param failure  the function to call when the API call returns
+	 *                 unsuccessfully
+	 */
+	call.getPerson = (uid, id, success, failure) => {
+		// get("person", {uid, id}, success, failure);
+		dummy.success(success, dummy.getPersonRes());
+		// dummy.success(failure, {});
+	};
+
+	/**
+	 * Creates a new opportunity.
+	 *
+	 * @param uid      the id of the user making the request
+	 * @param data     the data to send to the endpoint
+	 * @param success  the function to call when the API call returns
+	 *                 successfully
+	 * @param failure  the function to call when the API call returns
+	 *                 unsuccessfully, or if the data are malformed
+	 *                 and are not sent to the server
+	 */
+	call.postOpportunity = (uid, data, success, failure) => {
+		const MANDATORY = [
+			'about',
+			'commitment',
+			'compensation',
+			'deadline',
+			'description',
+			'location',
+			'qualifications',
+			'how',
+			'organization',
+			'title',
+			'link',
+		];
+
+		data.uid = uid;
+
+		let missing = require(data, MANDATORY);
+
+		if (typeof missing === 'undefined') {
+			// get("opportunity", data, success, failure);
+			dummy.success(success, dummy.postOpportunityRes());
+		} else {
+			failure({missing});
+		}
+	}
 })();

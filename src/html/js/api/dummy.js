@@ -24,6 +24,7 @@ class DummyAPI {
 	getOpportunitiesRes() {
 		return [
 			{
+				type: "opportunity",
 				title: "Opportunity Name",
 				organization: "Organization name",
 				compensation: "full-time, paid",
@@ -33,6 +34,16 @@ class DummyAPI {
 				link: "https://www.example.com/external-link",
 			},
 			{
+				type: "person",
+				name: "Nadir Pearson",
+				title: "Founder",
+				organization: "Student Marijuana Alliance for Research and Transparency",
+				location: "Providence, RI",
+				id: '420',
+				email: "nadir_pearson@brown.edu",
+			},
+			{
+				type: "opportunity",
 				title: "Another Opportunity",
 				organization: "Organization name",
 				compensation: "full-time, paid",
@@ -42,6 +53,7 @@ class DummyAPI {
 				link: "https://www.example.com/external-link",
 			},
 			{
+				type: "opportunity",
 				title: "Yet Another Opportunity",
 				organization: "Organization name",
 				compensation: "full-time, paid",
@@ -66,6 +78,21 @@ class DummyAPI {
 			content: 'I started painting as a hobby when I was little. I didn\'t know I had any talent. I believe talent is just a pursued interest. Anybody can do what I do. This painting comes right out of your heart. That\'s why I paint - because I can create the kind of world I want - and I can make this world as happy as I want it. I want everbody to be happy. That\'s what it\'s all about. How do you make a round circle with a square knife? That\'s your challenge for the day. Let\'s have a nice tree right here.\nJust let your mind wander and enjoy. This should make you happy. See there how easy that is. That\'s a crooked tree. We\'ll send him to Washington. Let\'s put some happy little clouds in our world.\nEven the worst thing we can do here is good. Use what happens naturally, don\'t fight it. This is truly an almighty mountain. That\'s crazy. I spend a lot of time walking around in the woods and talking to trees, and squirrels, and little rabbits and stuff.\nAll kinds of happy little splashes. This is a happy place, little squirrels live here and play. We\'ll play with clouds today. Let\'s put some happy trees and bushes back in here. Use your imagination, let it go. The only prerequisite is that it makes you happy. If it makes you happy then it\'s good.\nYou can work and carry-on and put lots of little happy things in here. Volunteering your time; it pays you and your whole community fantastic dividends. Let your imagination be your guide.\nI sincerely wish for you every possible joy life could bring. In your world you have total and absolute power. With something so strong, a little bit can go a long way. Look around, look at what we have. Beauty is everywhere, you only have to look to see it. You have to make these big decisions. Everybody\'s different. Trees are different. Let them all be individuals.\nI thought today we would do a happy little picture. Poor old tree. Now we can begin working on lots of happy little things. It\'s life. It\'s interesting. It\'s fun.\n',
 			source: 'PR0HBTD',
 		};
+	}
+
+	/**
+	 *
+	 */
+	getPersonRes() {
+		return {
+			name: "Nadir Pearson",
+			title: "Founder",
+			organization: "Student Marijuana Alliance for Research and Transparency",
+			location: "Providence, RI",
+			id: '420',
+			email: "nadir_pearson@brown.edu",
+			biography: "I started painting as a hobby when I was little. I didn\'t know I had any talent. I believe talent is just a pursued interest. Anybody can do what I do. This painting comes right out of your heart. That\'s why I paint - because I can create the kind of world I want - and I can make this world as happy as I want it. I want everbody to be happy. That\'s what it\'s all about. How do you make a round circle with a square knife? That\'s your challenge for the day. Let\'s have a nice tree right here.",
+		}
 	}
 
 	/**
@@ -137,7 +164,7 @@ class DummyAPI {
 	}
 
 	/**
-	 * Gets the saved responses for getSections
+	 * Gets the saved responses for getSections.
 	 */
 	getSectionsRes() {
 		return [
@@ -147,6 +174,39 @@ class DummyAPI {
 			"Medicinal Uses",
 			"Recipes",
 		];
+	}
+
+	/**
+	 * Gets the saved responses for getCalendars.
+	 */
+	getCalendarsRes() {
+		return [
+			{
+				name: "Boston, MA",
+				iframe: 'brown.edu_4lvmifevdpg2vpqs1kvlb28rh8%40group.calendar.google.com'
+			},
+			{
+				name: "Providence, RI",
+				iframe: 'brown.edu_4lvmifevdpg2vpqs1kvlb28rh8%40group.calendar.google.com'
+			},
+			{
+				name: "New York, NY",
+				iframe: 'brown.edu_4lvmifevdpg2vpqs1kvlb28rh8%40group.calendar.google.com'
+			},
+			{
+				name: "Los Angeles, CA",
+				iframe: 'brown.edu_4lvmifevdpg2vpqs1kvlb28rh8%40group.calendar.google.com'
+			}
+		];
+	}
+
+	/**
+	 * Gets the saved post opportunities respose.
+	 */
+	postOpportunityRes() {
+		return {
+			id: 420,
+		}
 	}
 
 	/**

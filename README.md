@@ -1,5 +1,8 @@
 # SMARTLink
 
+## Contributors
+hhung, jomekam, jjpowell, jbellavi
+
 ## Builing the site
 
 ### Front end
