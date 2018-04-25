@@ -114,6 +114,26 @@ let api = {
 		req.send();
 	}
 
+	/**
+	 * Returns an error if any fields are missing.
+	 *
+	 * @param data            the data to verify
+	 * @param mandatorFields  the fields which must exist to avoid returning an error
+	 * @return                undefined if all required fields exist, or a list
+	 *                        of missing fields in the case of an error
+	 */
+	let require = (data, mandatoryFields) => {
+		missing = [];
+
+		for (let field of mandatoryFields) {
+			if (typeof data[field] === 'undefined') {
+				missing.push(field);
+			}
+		}
+
+		return missing.length === 0 ? undefined : missing;
+	};
+
 
 	/**
 	 * GETs a list of all sections on the LEARN page.
@@ -223,4 +243,35 @@ let api = {
 		dummy.success(success, dummy.getPersonRes());
 		// dummy.success(failure, {});
 	};
+
+	/**
+	 * Creates a new opportunity.
+	 *
+	 * @param uid   the id of the user making the request
+	 */
+	call.createOpportunity = (uid, data, success, failure) => {
+		const MANDATORY = [
+			'about',
+			'commitment',
+			'compensation',
+			'deadline',
+			'description',
+			'location',
+			'qualifications',
+			'howToApply',
+			'organization',
+			'title',
+			'link',
+		];
+
+		data.uid = uid;
+
+		let missing =  require(data, MANDATORy);
+
+		if (typeof missing === 'undefined') {
+			post("opportunity", data, success, failure);
+		} else {
+			failure({missing});
+		}
+	}
 })();

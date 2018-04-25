@@ -49,7 +49,6 @@
         init.set("organization", data.organization);
         init.set("location", data.location);
         init.set("biography", data.biography);
-        init.set("organization", data.organization);
         document.getElementById('link').href = "mailto:" + data.email;
     };
 
