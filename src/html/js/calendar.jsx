@@ -6,7 +6,10 @@
     };
 
     // container for calendar functions.
-    let calendar = {};
+    let calendar = {
+        // internal mapping from calendar names to IDs
+        data: {},
+    };
 
     /**
      * Initializes the page.
@@ -35,6 +38,22 @@
     };
 
     /**
+     * Initializes the links in the select menu.
+     *
+     * @param data  the raw api data.
+     */
+    init.cal.links = (data) => {
+        // save the mappings for future use:
+        for (let cal of data) {
+            calendar.data[cal.name] = cal;
+        }
+
+        document.getElementById('city-select').onchange = calendar.onchange;
+
+        console.log(document.getElementById('city-select'));
+    }
+
+    /**
      * Creates the options in the city-select menu.
      *
      * @param data  the raw API data
@@ -47,6 +66,8 @@
                 <option class="city-option">{cal.name}</option>
             );
         }
+
+        init.cal.links(data);
     }
 
     /**
@@ -66,6 +87,17 @@
             </div>
         );
     };
+
+    /**
+     * Detects changes to the calendar select menu.
+     *
+     * @param event  the event that generated this function call
+     */
+    calendar.onchange = (event) => {
+        let node = event.target;
+
+        calendar.load(calendar.data[node.value]);
+    }
 
     /**
      * Loads the calendar from google.
