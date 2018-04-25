@@ -61,7 +61,7 @@
                     Could not load calendar.
                 </div>
                 <div class="text">
-                    This calendar may have been removed.
+                    This calendar may have been removed. We apologize for any inconvenience.
                 </div>
             </div>
         );
@@ -79,9 +79,6 @@
             + '&amp;color=%230F4B38&amp;ctz=America%2FNew_York" style="border-width:0" width="800" height="600" frameborder="0" scrolling="no"></iframe>';
 
         document.getElementById('calendar').innerHTML = iframe;
-
-
-
     }
 
     // sets the js in motion

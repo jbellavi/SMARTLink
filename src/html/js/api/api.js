@@ -171,6 +171,7 @@ let api = {
 	call.getCalendars = (uid, success, failure) => {
 		// get("calendars", success, failure);
 		dummy.success(success, dummy.getCalendarsRes());
+		// dummy.success(failure, []);
 	};
 
 	/**
