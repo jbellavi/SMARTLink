@@ -137,7 +137,7 @@ class DummyAPI {
 	}
 
 	/**
-	 * Gets the saved responses for getSections
+	 * Gets the saved responses for getSections.
 	 */
 	getSectionsRes() {
 		return [
@@ -146,6 +146,30 @@ class DummyAPI {
 			"History",
 			"Medicinal Uses",
 			"Recipes",
+		];
+	}
+
+	/**
+	 * Gets the saved responses for getCalendars.
+	 */
+	getCalendarsRes() {
+		return [
+			{
+				name: "Boston, MA",
+				iframe: 'brown.edu_4lvmifevdpg2vpqs1kvlb28rh8%40group.calendar.google.com'
+			},
+			{
+				name: "Providence, RI",
+				iframe: '<iframe src="https://calendar.google.com/calendar/b/1/embed?showTitle=0&amp;height=600&amp;wkst=1&amp;bgcolor=%23FFFFFF&amp;src=brown.edu_4lvmifevdpg2vpqs1kvlb28rh8%40group.calendar.google.com&amp;color=%230F4B38&amp;ctz=America%2FNew_York" style="border-width:0" width="800" height="600" frameborder="0" scrolling="no"></iframe>'
+			},
+			{
+				name: "New York, NY",
+				iframe: '<iframe src="https://calendar.google.com/calendar/b/1/embed?showTitle=0&amp;height=600&amp;wkst=1&amp;bgcolor=%23FFFFFF&amp;src=brown.edu_4lvmifevdpg2vpqs1kvlb28rh8%40group.calendar.google.com&amp;color=%230F4B38&amp;ctz=America%2FNew_York" style="border-width:0" width="800" height="600" frameborder="0" scrolling="no"></iframe>'
+			},
+			{
+				name: "Los Angeles, CA",
+				iframe: '<iframe src="https://calendar.google.com/calendar/b/1/embed?showTitle=0&amp;height=600&amp;wkst=1&amp;bgcolor=%23FFFFFF&amp;src=brown.edu_4lvmifevdpg2vpqs1kvlb28rh8%40group.calendar.google.com&amp;color=%230F4B38&amp;ctz=America%2FNew_York" style="border-width:0" width="800" height="600" frameborder="0" scrolling="no"></iframe>'
+			}
 		];
 	}
 

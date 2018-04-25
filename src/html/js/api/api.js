@@ -160,9 +160,23 @@ let api = {
 	};
 
 	/**
+	 * GETs the list of available regional google calendars.
+	 *
+	 * @param uid      the id of the user making the request
+	 * @param success  the function to call when the API call returns
+	 *                 successfully
+	 * @param failure  the funcction to call when the API call returns
+	 *                 unsuccesfully
+	 */
+	call.getCalendars = (uid, success, failure) => {
+		// get("calendars", success, failure);
+		dummy.success(success, dummy.getCalendarsRes());
+	};
+
+	/**
 	 * Gets search results for a search on the connect page.
 	 *
-	 * @param uid      the id of the userma king the search
+	 * @param uid      the id of the user making the search
 	 * @param query    the search query
 	 * @param success  the function to call when the API call returns
 	 *                 successfully
