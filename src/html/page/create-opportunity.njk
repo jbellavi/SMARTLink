@@ -1,0 +1,43 @@
+{% extends "layout.njk" %}
+
+{% block title %}Create Opportunity - SMART{% endblock %}
+
+{% block content %}
+<div class="banner">
+    <div class="simple">
+        <div class="banner-text">
+            <span>The power of SMARTConnect comes from the SMART community.</span>
+            <span class="bold">Post an opportunity here.</span>
+        </div>
+    </div>
+</div>
+<div class="form">
+    <h1 class="form-header">
+        Opportunity information
+    </h1>
+    <div class="form-label">Title</div>
+    <input class="input-text" type="text" id="title">
+    <div class="form-label">Organization</div>
+    <input class="input-text" type="text" id="organization">
+    <div class="form-label">Location</div>
+    <input class="input-text" type="text" id="location">
+    <div class="form-label">Compensation</div>
+    <input class="input-text" type="text" id="compensation">
+    <div class="form-label">Link</div>
+    <input class="input-text" type="text" id="link">
+    <div class="form-label">Description</div>
+    <textarea type="text" class="input-textarea" id="description"></textarea>
+    <div class="form-label">Qualifications</div>
+    <textarea type="text" class="input-textarea" id="qualifications"></textarea>
+    <div class="form-label">About us</div>
+    <textarea type="text" class="input-textarea" id="about"></textarea>
+    <div class="form-label">Commitment</div>
+    <textarea type="text" class="input-textarea" id="commitment"></textarea>
+    <div class="form-label">How to apply</div>
+    <textarea type="text" class="input-textarea" id="how"></textarea>
+    <div class="buttons">
+        <button class="submit-post" title="submit">Post Opportunity</button>
+        <button class="cancel-post" title="cancel">Cancel</button>
+    </div>
+</div>
+{% endblock %}

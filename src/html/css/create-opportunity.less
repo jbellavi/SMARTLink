@@ -1,2 +1,94 @@
 @import "common/common";
+@import "common/simple";
 
+.form {
+    width: 80%;
+    max-width: 500px;
+    display: flex;
+    flex-direction: column;
+    font-family: @font-family-main;
+    padding: 20px 0px;
+    align-self: center;
+}
+
+.form-header {
+    font-family: @font-family-title;
+    font-weight: 500;
+    font-size: 25px;
+    margin: 20px 0px;
+}
+
+.form-label {
+    font-size: 11px;
+    margin-top: 10px;
+    color: @color-accent;
+}
+
+.form-field() {
+    width: 100%;
+    font-size: 16px;
+    padding: 5px;
+    border: 1px solid @color-grey;
+    border-radius: 5px;
+}
+
+.input-text {
+    .form-field();
+}
+
+.input-textarea {
+    .form-field();
+    height: 75px;
+    font-family: @font-family-main;
+}
+
+.buttons {
+    margin: 20px 0px;
+    padding: 12px 0px;
+    display: flex;
+    flex-direction: row;
+    align-self: flex-start;
+}
+
+.button() {
+    border: none;
+    background-color: transparent;
+    height: 41px;
+    width: 133px;
+    font-size: 15px;
+    border-radius: 2px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+}
+
+.cancel-post {
+    .button();
+}
+
+.submit-post {
+    .button();
+    border: 2px solid black;
+}
+
+.banner {
+    width: 100%;
+    background-color: @color-accent;
+}
+
+.banner-text {
+    .title();
+    color: @color-white;
+    font-weight: 400;
+    font-size: 20px;
+}
+
+.bold {
+    font-weight: 500;
+}
+
+.simple {
+    max-width: 500px;
+    margin: auto;
+}
