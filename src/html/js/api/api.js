@@ -179,13 +179,14 @@ let api = {
 	 *
 	 * @param uid      the id of the user making the search
 	 * @param query    the search query
+	 * @param filters  the filters to apply to the query
 	 * @param success  the function to call when the API call returns
 	 *                 successfully
 	 * @param failure  the function to call when the API call returns
 	 *                 unsuccessfully
 	 */
-	call.getOpportunities = (uid, query, success, failure) => {
-		// get("opportunities", {uid, query}, success, failure);
+	call.getOpportunities = (uid, query, filters, success, failure) => {
+		// get("opportunities", {uid, query, filters}, success, failure);
 		dummy.success(success, dummy.getOpportunitiesRes());
 		// dummy.success(failure, {});
 		// dummy.success(success, []);

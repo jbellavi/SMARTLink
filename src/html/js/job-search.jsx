@@ -1,15 +1,38 @@
 (() => {
 	// wrapper for initialization functions
-	let init = {};
+	let init = {
+		// container for filter initialization functions
+		filter: {}
+	};
+
+	// wrapper for filter functions
+	let filter = {
+		// the list of filters
+		list: [
+			"internships",
+			"research",
+			"people",
+		],
+	};
 
 	// wrapper for card creation functions
 	let card = {};
+
+	/**
+	 * Initializes the filter menu.
+	 */
+	init.filter = () => {
+		for (let name of filter.list) {
+			document.getElementById(name + '-checkbox').onchange = init.load;
+		}
+	};
 
 	/**
 	 * Main initialization function.
 	 */
 	init.go = () => {
 		init.load();
+		init.filter();
 	};
 
 	/**
@@ -21,8 +44,16 @@
 		// TODO: get the query and UID from somewhere
 		let uid = 0;
 		let query = "marijuana";
+		let filters = filter.get();
+		console.log(filters);
 
-		api.call.getOpportunities(uid, query, init.success, init.failure)
+		let node = document.getElementById('results');
+
+		while (node.firstChild) {
+			node.removeChild(node.firstChild);
+		}
+
+		api.call.getOpportunities(uid, query, filters, init.success, init.failure)
 		
 	};
 
@@ -116,6 +147,26 @@
 	        </div>
         );
 	};
+
+	/**
+	 * Gets an array of the filters which are currently enabled.
+	 */
+	filter.get = () => {
+		return {
+			internships: filter.checked('internships'),
+			research:    filter.checked('research'),
+			people:      filter.checked('people'),
+		}
+	}
+
+	/**
+	 * Returns the checked status of the filter with the given name.
+	 *
+	 * @param name  the id of the filter
+	 */
+	filter.checked = (id) => {
+		return document.getElementById(id + '-checkbox').checked;
+	}
 
 	/**
 	 * Called when the job is not found.
