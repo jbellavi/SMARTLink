@@ -2,6 +2,9 @@
 	// wrapper for initialization functions
 	let init = {};
 
+	// wrapper for card creation functions
+	let card = {};
+
 	/**
 	 * Main initialization function.
 	 */
@@ -43,32 +46,75 @@
 	/**
 	 * Called when the job is found.
 	 */
-	init.success = (jobs) => {
+	init.success = (cards) => {
 		let results = document.getElementById('results');
 
-		if (jobs.length === 0) {
+		if (cards.length === 0) {
 			// no results found.
 			init.failure();
 			return;
 		}
 
-		for (let job of jobs) {
-			let url = "job-result.html#" + job.id;
+		for (let cardData of cards) {
+			let cardNode = card.make(cardData)
 
-			results.appendChild(
-				<div class="job">
-		            <h3 class="job-title">{job.title}</h3>
-		            <p class="job-description">{job.organization}</p>
-		            <p class="job-description">{job.location}</p>
-		            <p class="job-description">{job.compensation}</p>
-		            <p class="job-description">application deadline: {job.deadline}</p>
-		            <div class="job-interact">
-		                <a href={url} class="read-more">Read More</a>
-		                <a href={job.link} class="apply">Apply</a>
-		            </div>
-		        </div>
-			);
+			results.appendChild(cardNode);
 		}
+	};
+
+	/**
+	 * Creates and returns a card of any type.
+	 */
+	card.make = (data) => {
+		switch (data.type) {
+			case "opportunity":
+				return card.opportunity(data);
+
+			case "person":
+				return card.person(data);
+		}
+	}
+
+	/**
+	 * Creates and returns a job opportunity card.
+	 */
+	card.opportunity = (job) => {
+		let url = "job-result.html#" + job.id;
+
+		return (
+			<div class="job">
+	            <h3 class="job-title">{job.title}</h3>
+	            <p class="job-description">{job.organization}</p>
+	            <p class="job-description">{job.location}</p>
+	            <p class="job-description">{job.compensation}</p>
+	            <p class="job-description">Application Deadline: {job.deadline}</p>
+	            <div class="job-interact">
+	                <a href={url} class="read-more">Read More</a>
+	                <a href={job.link} class="apply">Apply</a>
+	            </div>
+	        </div>
+        );
+	};
+
+	/**
+	 * Creates and returns a person card. 
+	 */
+	card.person = (person) => {
+		let url = "person-result.html#" + person.id;
+		let email = "mailto:" + person.email;
+
+		return (
+			<div class="job">
+				<h3 class="job-title">{person.name}</h3>
+				<p class="job-description">{person.title}</p>
+				<p class="job-description">{person.organization}</p>
+				<p class="job-description">{person.location}</p>
+	            <div class="job-interact">
+	                <a href={url} class="read-more">See Profile</a>
+	                <a href={email} class="apply">Contact</a>
+	            </div>
+	        </div>
+        );
 	};
 
 	/**

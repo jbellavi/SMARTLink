@@ -105,15 +105,20 @@
     font-weight: 500;
 }
 
-.link() {
-    width: 50%;
+.link {
+    text-decoration: underline;
 }
 
-.read-more {
+.read-more:hover {
     .link();
-    border-right: 2px solid @color-text-grey;
 }
 
 .apply {
-    padding-left: 20px;
+    padding-left: 15px;
+    border-left: 2px solid @color-text-grey;
+    margin-left: 15px;
+}
+
+.apply:hover {
+    .link();
 }

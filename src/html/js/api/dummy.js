@@ -24,6 +24,7 @@ class DummyAPI {
 	getOpportunitiesRes() {
 		return [
 			{
+				type: "opportunity",
 				title: "Opportunity Name",
 				organization: "Organization name",
 				compensation: "full-time, paid",
@@ -33,6 +34,16 @@ class DummyAPI {
 				link: "https://www.example.com/external-link",
 			},
 			{
+				type: "person",
+				name: "Nadir Pearson",
+				title: "Founder",
+				organization: "Student Marijuana Alliance for Research and Transparency",
+				location: "Providence, RI",
+				id: '420',
+				email: "nadir_pearson@brown.edu",
+			},
+			{
+				type: "opportunity",
 				title: "Another Opportunity",
 				organization: "Organization name",
 				compensation: "full-time, paid",
@@ -42,6 +53,7 @@ class DummyAPI {
 				link: "https://www.example.com/external-link",
 			},
 			{
+				type: "opportunity",
 				title: "Yet Another Opportunity",
 				organization: "Organization name",
 				compensation: "full-time, paid",
