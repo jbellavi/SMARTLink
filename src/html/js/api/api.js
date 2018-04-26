@@ -181,6 +181,21 @@ let api = {
 	};
 
 	/**
+	 * GETs a single video.
+	 *
+	 * @param id         the id of the video
+	 * @param success    the function to call when the API call returns
+	 *                   successfully
+	 * @param failure    the function to call when the API call returns
+	 *                   unsuccessfully
+	 */
+	call.getVideo = (id, success, failure) => {
+		// get("video", {id}, success, failure);
+		dummy.success(success, dummy.getVideoRes());
+		// dummy.success(failure, {});
+	};
+
+	/**
 	 * GETs the list of available regional google calendars.
 	 *
 	 * @param uid      the id of the user making the request
