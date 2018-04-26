@@ -134,11 +134,8 @@ let compileHtml = (dir, file, css, js) => {
  */
 let compileJs = (dir, file, cb) => {
     return gulp.src(SRC + '/' + dir + '/' + file + '.+(js|jsx)')
-        .pipe(babel({
-            presets: ['env'],
-            plugins: ['transform-react-jsx'],
-        }))
-        // .pipe(uglify())
+        .pipe(babel())
+        .pipe(uglify())
         .pipe(gulp.dest(TMP + '/' + dir))
         .on('end', cb);
 }
