@@ -40,10 +40,11 @@ connPool.query('CREATE TABLE IF NOT EXISTS article(article_id INTEGER PRIMARY KE
  'content TEXT,' + 
  'submitted DATETIME,' + 
  'section TEXT,' + 
- 'user_id TEXT,' + 
+ 'username TEXT,' + 
  'image_url TEXT,' + 
  'source TEXT,' +
- 'FOREIGN KEY (section) REFERENCES section(section))');
+ 'FOREIGN KEY (section) REFERENCES section(section),' +
+ 'FOREIGN KEY (username) REFERENCES user(username))');
 
 /* Opportunities Table*/
 connPool.query('CREATE TABLE IF NOT EXISTS opportunity(opportunity_id INTEGER PRIMARY KEY AUTOINCREMENT,' + 
@@ -58,8 +59,8 @@ connPool.query('CREATE TABLE IF NOT EXISTS opportunity(opportunity_id INTEGER PR
 	'how TEXT,' + 
 	'title TEXT,' + 
 	'link TEXT,' +
-	'user_id INTEGER,' + 
-	'FOREIGN KEY(user_id) REFERENCES user(user_id))'); 
+	'organization,' +
+	'FOREIGN KEY(organization) REFERENCES user(username))'); 
 
 
 /** LEARN PAGE **/
@@ -100,11 +101,32 @@ app.get('/learn/:articleid', function (request, response) {
 	})
 });
 
-// LEARN PAGE POST METHODSS //
+//GET ARTICLES
+
 
 //POST ARTICLE
 app.post('/learn/article', function (request, response) {
 	const params = request.body;
+	const article = [
+		null, //autoincrement id
+		false, //isApproved
+		params.title,
+		params.content,
+		Date.now(),
+		params.section,
+		params.user_id,
+		params.image_url,
+		params.source
+	];
+
+	const insertArticleQuery = 'INSERT into article VALUES($1, $2, $3, $4, $5, $6, $7, $8, $9)';
+	connPool.query(insertArticleQuery, article, function(error, data) {
+		if (error) {
+			response.send({success: false});
+		} 
+		response.send({success: true});
+	});
+
 });
 
 
@@ -157,7 +179,6 @@ app.get('/connect', function(request, response) {
 
 //GET opportunities given an organization
 app.get('/connect/:organization_name', function(request, response) {
-	console.log("GET ALL OPPORTUNITIES FOR A GIVEN ORGANIZATION")
 	const params = request.body;
 	const opportunitiesQuery = 'SELECT * FROM opportunity WHERE opportunity_id IS $1';
 	connPool.query(opportunitiesQuery, [params.organization], function (error, data) {
