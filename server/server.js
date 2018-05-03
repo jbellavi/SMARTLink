@@ -11,57 +11,63 @@ app.use(bodyParser.json());
 //Database Connection Pool =======
 const connPool = anyDB.createPool(dbURL, {min: 0, max: 50});
 
-/*
-Article:
-	id STRING
-	isApproved BOOLEAN
-	title STRING
-	user_id 
-	submit_date DATE
-	description STRING
-	content STRING
-	section 
+/* Sections Table */
+connPool.query('CREATE TABLE IF NOT EXISTS section(' +
+	'section_id INTEGER PRIMARY KEY AUTOINCREMENT,' +
+	'section TEXT)');
 
-Opportunity:
-	isApproved
-	title
-	organization_name
-	deadline
+/* Chapters Table */
+connPool.query('CREATE TABLE IF NOT EXISTS chapter(' +
+	'chapter_id INTEGER PRIMARY KEY AUTOINCREMENT,' +
+ 'name TEXT,' +
+ 'email TEXT,' + 
+ 'university TEXT)');
 
-Chapter:
-	id
-	name
-	email
-	university
+/* User Table */
+connPool.query('CREATE TABLE IF NOT EXISTS user(' +
+	'user_id INTEGER PRIMARY KEY AUTOINCREMENT,' +
+ 'username TEXT,' +
+ 'email TEXT,' +
+ 'created DATETIME,' + 
+ 'password TEXT,' + 
+ 'isAdmin BOOLEAN,' + 
+ 'isOrg BOOLEAN)');
 
-User:
-	id
-	username
-	email
-	created
-	isAdmin
-	isOrg
-*/
+/* Article Table */
+connPool.query('CREATE TABLE IF NOT EXISTS article(article_id INTEGER PRIMARY KEY AUTOINCREMENT,' +
+ 'isApproved BOOLEAN,' + 
+ 'title TEXT,' + 
+ 'content TEXT,' + 
+ 'submitted DATETIME,' + 
+ 'section TEXT,' + 
+ 'user_id TEXT,' + 
+ 'image_url TEXT,' + 
+ 'source TEXT,' +
+ 'FOREIGN KEY (section) REFERENCES section(section))');
 
-connPool.query('CREATE TABLE IF NOT EXISTS sections(id INTEGER PRIMARY KEY AUTOINCREMENT, section TEXT)');
-connPool.query('CREATE TABLE IF NOT EXISTS chapters(id INTEGER PRIMARY KEY AUTOINCREMENT, name TEXT, email TEXT, university TEXT)');
-connPool.query('CREATE TABLE IF NOT EXISTS users(id STRING, username TEXT, email TEXT, created DATETIME, password TEXT, isAdmin BOOLEAN, isOrg BOOLEAN)');
-connPool.query('CREATE TABLE IF NOT EXISTS articles(id INTEGER PRIMARY KEY AUTOINCREMENT, isApproved BOOLEAN, title TEXT, content TEXT, url TEXT, submitted DATETIME, section TEXT, user_id TEXT, image_url TEXT, source TEXT)');
-connPool.query('CREATE TABLE IF NOT EXISTS opportunities(id INTEGER PRIMARY KEY AUTOINCREMENT, isApproved BOOLEAN, title TEXT, organization_name TEXT, deadline DATETIME, description TEXT, qualifications TEXT, commitment TEXT, how_to_apply TEXT, about TEXT, url TEXT, position TEXT)');
+/* Opportunities Table*/
+connPool.query('CREATE TABLE IF NOT EXISTS opportunity(opportunity_id INTEGER PRIMARY KEY AUTOINCREMENT,' + 
+	'isApproved BOOLEAN,' + 
+	'about TEXT,' + 
+	'commitment TEXT,' + 
+	'compensation INTEGER,' +
+	'description TEXT,' + 
+	'location TEXT,' +
+	'deadline DATETIME,' + 
+	'qualifications TEXT,' + 
+	'how TEXT,' + 
+	'title TEXT,' + 
+	'link TEXT,' +
+	'user_id INTEGER,' + 
+	'FOREIGN KEY(user_id) REFERENCES user(user_id))'); 
 
 
-/** 
-
-LEARN PAGE
-
-**/
-
-// LEARN PAGE GET METHODS //
+/** LEARN PAGE **/
 
 //GET ALL SECTIONS
 app.get('/learn/sections', function (request, response) {
 	console.log("GET ALL SECTIONS REQUEST");
-	const sectionQuery = 'SELECT DISTINCT section FROM sections';
+	const sectionQuery = 'SELECT DISTINCT section FROM section;';
 	const allSections = connPool.query(sectionQuery, function(error, data) {
 		if (error) {
 			response.send( {success: false, data: []})
@@ -73,7 +79,7 @@ app.get('/learn/sections', function (request, response) {
 //GET ALL ARTICLES GIVEN A SECTION
 app.get('/learn/sections/:section', function (request, response) {
 	console.log("GET ALL ARTICLES FOR A GIVEN SECTION");
-	const sectionArticles = 'SELECT * FROM articles WHERE section IS $1';
+	const sectionArticles = 'SELECT * FROM articles WHERE section IS $1;';
 	connPool.query(sectionArticles, [request.body.section], function (error, data) {
 		if (error) {
 			response.send( {success: false, data: []})
@@ -85,7 +91,7 @@ app.get('/learn/sections/:section', function (request, response) {
 //GET ARTICLE GIVEN ARTICLE ID
 app.get('/learn/:articleid', function (request, response) {
 	console.log("GET AN ARTICLE GIVEN AN ARTICLE ID");
-	const articleQuery = 'SELECT * FROM artciles WHERE id = $1';
+	const articleQuery = 'SELECT * FROM articles WHERE article_id = $1;';
 	connPool.query(articleQuery, [request.body.articleid], function (error, data) {
 		if (error) {
 			response.send( {success: false, data: []})
@@ -110,9 +116,36 @@ Connect Page
 
 */
 
-//GET all opportunities
+app.post('/opportunities', function(request, response) {
+	const params = response.body;
+	const opportunity = [null, //id (AUTOINCREMENT)
+	false, //isApproved
+	params.about,  
+	params.commitment, 
+	params.compensation, 
+	params.deadline,
+	params.description,
+	params.location,
+	params.qualifications,
+	params.how,
+	params.organization,
+	params.title,
+	params.link,
+	 ];
+
+	const insertOppprtunityQuery = 'INSERT into opportunity VALUES($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12, 13)';
+	connPool.query(insertOppprtunityQuery, opportunity, function(error, data) {
+		if (error) {
+			response.send({success: false});
+		}
+		response.send({success: true});
+	});
+
+});
+
+
 app.get('/connect', function(request, response) {
-	const opportunitiesQuery = 'SELECT * FROM opportunities';
+	const opportunitiesQuery = 'SELECT * FROM opportunity;';
 	connPool.query(opportunitiesQuery, function (error, data) {
 		if (error) {
 			response.send({success: false, data: []});
@@ -126,8 +159,8 @@ app.get('/connect', function(request, response) {
 app.get('/connect/:organization_name', function(request, response) {
 	console.log("GET ALL OPPORTUNITIES FOR A GIVEN ORGANIZATION")
 	const params = request.body;
-	const opportunitiesQuery = 'SELECT * FROM opportunities WHERE organization_name IS $1';
-	connPool.query(opportunitiesQuery, [params.organization_name], function (error, data) {
+	const opportunitiesQuery = 'SELECT * FROM opportunity WHERE opportunity_id IS $1';
+	connPool.query(opportunitiesQuery, [params.organization], function (error, data) {
 		if (error) {
 			response.send( {success: false, data: []})
 		}
@@ -139,7 +172,7 @@ app.get('/connect/:organization_name', function(request, response) {
 app.get('/connect/opportunities/:id', function (request, response) {
 	console.log("GET AN OPPORTUNITY GIVEN AN ID");
 	const params = request.body;
-	const opportunityQuery = 'SELECT * FROM opportunities WHERE id == $1';
+	const opportunityQuery = 'SELECT * FROM opportunity WHERE opportunity_id IS $1';
 
 	connPool.query(opportunityQuery, [params.id], function (request, response) {
 		if (error) {
