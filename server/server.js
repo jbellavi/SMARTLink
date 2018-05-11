@@ -3,13 +3,19 @@ const bodyParser = require('body-parser');
 const anyDB = require('any-db');
 const path = require('path');
 const dbURL = 'sqlite3://smartlink.db';
-
 const app = express();
+
 app.use(bodyParser.urlencoded({extended: false}));
 app.use(bodyParser.json());
 
 //Database Connection Pool =======
 const connPool = anyDB.createPool(dbURL, {min: 0, max: 50});
+
+//Setup directories to static files
+app.use(express.static(__dirname + '/../com/html/asset'));
+//Setup directories to html files
+app.use(express.static(__dirname + '/../com/html/'));
+
 
 /* Sections Table */
 connPool.query('CREATE TABLE IF NOT EXISTS section(' +
@@ -51,6 +57,11 @@ connPool.query('CREATE TABLE IF NOT EXISTS opportunity(id INTEGER PRIMARY KEY AU
 	'about TEXT,' +
 	'link TEXT)'); 
 
+
+
+app.get('/', function(request, response) {
+	response.render('index.html');
+});
 
 /** LEARN PAGE **/
 app.post('/section', function (request, response) {
