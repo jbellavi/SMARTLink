@@ -16,13 +16,6 @@ connPool.query('CREATE TABLE IF NOT EXISTS section(' +
 	'id INTEGER PRIMARY KEY AUTOINCREMENT,' +
 	'section TEXT)');
 
-/* Chapters Table */
-connPool.query('CREATE TABLE IF NOT EXISTS chapter(' +
-	'id INTEGER PRIMARY KEY AUTOINCREMENT,' +
- 'name TEXT,' +
- 'email TEXT,' + 
- 'university TEXT)');
-
 /* User Table */
 connPool.query('CREATE TABLE IF NOT EXISTS user(' +
 	'id INTEGER PRIMARY KEY AUTOINCREMENT,' +
@@ -60,11 +53,24 @@ connPool.query('CREATE TABLE IF NOT EXISTS opportunity(id INTEGER PRIMARY KEY AU
 
 
 /** LEARN PAGE **/
+app.post('/section', function (request, response) {
+	const insertSectionQuery = 'INSERT INTO section VALUES($1, $2);';
+	console.log(request.body);
+	console.log(request.body.section);
+	connPool.query(insertSectionQuery, [null, request.body.section], function (error, data) {
+		if (error) {
+			response.send({success: false, data: []});
+		} else {
+			response.send({success: true, data: data.rows});
+		}
+	})
+});
+
 
 //GET ALL SECTIONS
 app.get('/learn/sections', function (request, response) {
 	console.log("GET ALL SECTIONS REQUEST");
-	const sectionQuery = 'SELECT DISTINCT section FROM article ORDER BY section;';
+	const sectionQuery = 'SELECT DISTINCT section FROM section ORDER BY section;';
 	const allSections = connPool.query(sectionQuery, function(error, data) {
 		if (error) {
 			response.send( {success: false, data: []})

@@ -28,7 +28,7 @@ function insertOpportunityIntoDatabase(params) {
 		headers: {
 			'Content-Type': 'application/json'
 		},
-		body: JSON.stringify(params),
+		body: JSON.stringify(params), 
 	}).then((response => {
 		if (response.ok) {
 			console.log("Successfully inserted Opportunity : ");
@@ -38,6 +38,30 @@ function insertOpportunityIntoDatabase(params) {
 	}));
 }
 
+function insertSectionIntoDatabase(params) {
+	console.log(params.section);
+	fetch('http://localhost:9999/section', {
+		method: 'POST',
+		headers: {
+			'Content-Type' : 'application/json',
+			body: JSON.stringify(params),
+		}
+	}).then((response) => {
+		if (response.ok) {
+			console.log("Successfully inserted Opportunity");
+		} else {
+			console.log("Unable to insert opportunity");
+		}
+	});
+}
+
+const sampleSections = [
+			{section: "How to Smoke"},
+			{section: "Decriminalization"},
+			{section: "History"},
+			{section: "Medicinal Uses"},
+			{section: "Recipes"},
+		];
 const sampleOpportunities =  [
 			{
 			title: "Opportunity Name",
@@ -166,5 +190,7 @@ const sampleArticles = [
 			},
 		];
 
+
+sampleSections.map(insertSectionIntoDatabase);
 sampleArticles.map(insertArticleIntoDatabase);
 sampleOpportunities.map(insertOpportunityIntoDatabase);
